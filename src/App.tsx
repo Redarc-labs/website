@@ -41,7 +41,7 @@ function Nav() {
           {/* Logo — SVG renders dark-on-white natively; no filter needed in light mode */}
           <a href="#" aria-label="Redarc Labs" className="flex items-center">
             <img
-              src="/redarc_labs_logo_white.svg"
+              src={logoUrl}
               alt="Redarc Labs"
               className="h-7 w-auto"
               style={{ display: 'block' }}
