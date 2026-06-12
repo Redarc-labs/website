@@ -1,0 +1,143 @@
+<svg width="680" height="720" viewBox="0 0 680 720" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Redarc Labs Logo</title>
+<desc>Yantra-inspired geometric logo for Redarc Labs — Adversarial Interpretability for AI Safety</desc>
+
+<defs>
+  <style>
+    .bg { fill: #FFFFFF; }
+    .red { fill: #C0392B; }
+    .red-s { stroke: #C0392B; fill: none; }
+    .red-dim { stroke: rgba(192,57,43,0.35); fill: none; }
+    .node { fill: #C0392B; }
+    .node-inner { fill: #FFFFFF; }
+    .outer-ring { stroke: rgba(192,57,43,0.2); fill: none; }
+    .mid-ring { stroke: rgba(192,57,43,0.4); fill: none; }
+    .tri-up { stroke: #C0392B; fill: rgba(192,57,43,0.06); stroke-width: 1; }
+    .tri-down { stroke: rgba(192,57,43,0.7); fill: rgba(192,57,43,0.03); stroke-width: 0.8; }
+    .grid { stroke: rgba(192,57,43,0.08); stroke-width: 0.5; }
+  </style>
+</defs>
+
+<!-- Background -->
+<rect class="bg" fill="none" width="680" height="720"/>
+
+<!-- Red top bar -->
+<rect fill="#C0392B" x="0" y="0" width="680" height="3"/>
+
+<!-- Subtle grid -->
+<line class="grid" x1="0" y1="56" x2="680" y2="56"/>
+<line class="grid" x1="0" y1="84" x2="680" y2="84"/>
+<line class="grid" x1="56" y1="0" x2="56" y2="720"/>
+<line class="grid" x1="624" y1="0" x2="624" y2="720"/>
+
+<!-- Outer square with gates -->
+<rect stroke="rgba(192,57,43,0.35)" fill="none" x="160" y="130" width="360" height="360" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="160" y1="200" x2="140" y2="200" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="160" y1="240" x2="140" y2="240" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="160" y1="370" x2="140" y2="370" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="160" y1="410" x2="140" y2="410" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="520" y1="200" x2="540" y2="200" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="520" y1="370" x2="540" y2="370" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="220" y1="130" x2="220" y2="110" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="420" y1="130" x2="420" y2="110" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="220" y1="490" x2="220" y2="510" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.35)" x1="420" y1="490" x2="420" y2="510" stroke-width="0.8"/>
+
+<!-- Lotus rings -->
+<circle class="outer-ring" cx="340" cy="310" r="155" stroke-width="0.5"/>
+<circle class="outer-ring" cx="340" cy="310" r="145" stroke-width="0.5"/>
+
+<!-- 8 petals -->
+<ellipse cx="340" cy="195" rx="16" ry="38" stroke="rgba(192,57,43,0.3)" fill="rgba(192,57,43,0.04)" stroke-width="0.7" transform="rotate(0,340,310)"/>
+<ellipse cx="340" cy="195" rx="16" ry="38" stroke="rgba(192,57,43,0.3)" fill="rgba(192,57,43,0.04)" stroke-width="0.7" transform="rotate(45,340,310)"/>
+<ellipse cx="340" cy="195" rx="16" ry="38" stroke="rgba(192,57,43,0.3)" fill="rgba(192,57,43,0.04)" stroke-width="0.7" transform="rotate(90,340,310)"/>
+<ellipse cx="340" cy="195" rx="16" ry="38" stroke="rgba(192,57,43,0.3)" fill="rgba(192,57,43,0.04)" stroke-width="0.7" transform="rotate(135,340,310)"/>
+<ellipse cx="340" cy="195" rx="16" ry="38" stroke="rgba(192,57,43,0.3)" fill="rgba(192,57,43,0.04)" stroke-width="0.7" transform="rotate(180,340,310)"/>
+<ellipse cx="340" cy="195" rx="16" ry="38" stroke="rgba(192,57,43,0.3)" fill="rgba(192,57,43,0.04)" stroke-width="0.7" transform="rotate(225,340,310)"/>
+<ellipse cx="340" cy="195" rx="16" ry="38" stroke="rgba(192,57,43,0.3)" fill="rgba(192,57,43,0.04)" stroke-width="0.7" transform="rotate(270,340,310)"/>
+<ellipse cx="340" cy="195" rx="16" ry="38" stroke="rgba(192,57,43,0.3)" fill="rgba(192,57,43,0.04)" stroke-width="0.7" transform="rotate(315,340,310)"/>
+
+<!-- Inner circles -->
+<circle class="mid-ring" cx="340" cy="310" r="110" stroke-width="0.7"/>
+<circle class="mid-ring" cx="340" cy="310" r="85" stroke-width="0.5"/>
+
+<!-- Interlocking triangles -->
+<polygon class="tri-up" points="340,155 462,352 218,352"/>
+<polygon class="tri-down" points="340,465 218,268 462,268"/>
+<polygon class="tri-up" points="340,205 432,363 248,363" stroke-width="0.7" fill="rgba(192,57,43,0.04)"/>
+<polygon class="tri-down" points="340,415 248,257 432,257" stroke-width="0.6"/>
+<polygon class="tri-up" points="340,248 398,345 282,345" stroke-width="0.8" fill="rgba(192,57,43,0.08)"/>
+<polygon class="tri-down" points="340,372 282,275 398,275" stroke-width="0.7" fill="rgba(192,57,43,0.05)"/>
+
+<!-- Central hexagon -->
+<polygon fill="rgba(192,57,43,0.12)" stroke="#C0392B" stroke-width="1" points="340,275 363,288 363,313 340,326 317,313 317,288"/>
+
+<!-- Apex nodes -->
+<circle fill="#C0392B" cx="340" cy="155" r="5"/><circle fill="#FFFFFF" cx="340" cy="155" r="2.5"/>
+<circle fill="#C0392B" cx="340" cy="465" r="5"/><circle fill="#FFFFFF" cx="340" cy="465" r="2.5"/>
+<circle fill="#C0392B" cx="218" cy="352" r="5"/><circle fill="#FFFFFF" cx="218" cy="352" r="2.5"/>
+<circle fill="#C0392B" cx="462" cy="352" r="5"/><circle fill="#FFFFFF" cx="462" cy="352" r="2.5"/>
+<circle fill="#C0392B" cx="218" cy="268" r="5"/><circle fill="#FFFFFF" cx="218" cy="268" r="2.5"/>
+<circle fill="#C0392B" cx="462" cy="268" r="5"/><circle fill="#FFFFFF" cx="462" cy="268" r="2.5"/>
+
+<!-- Mid nodes -->
+<circle fill="rgba(192,57,43,0.5)" cx="340" cy="205" r="4"/><circle fill="#FFFFFF" cx="340" cy="205" r="2"/>
+<circle fill="rgba(192,57,43,0.5)" cx="340" cy="415" r="4"/><circle fill="#FFFFFF" cx="340" cy="415" r="2"/>
+<circle fill="rgba(192,57,43,0.5)" cx="248" cy="363" r="4"/><circle fill="#FFFFFF" cx="248" cy="363" r="2"/>
+<circle fill="rgba(192,57,43,0.5)" cx="432" cy="363" r="4"/><circle fill="#FFFFFF" cx="432" cy="363" r="2"/>
+<circle fill="rgba(192,57,43,0.5)" cx="248" cy="257" r="4"/><circle fill="#FFFFFF" cx="248" cy="257" r="2"/>
+<circle fill="rgba(192,57,43,0.5)" cx="432" cy="257" r="4"/><circle fill="#FFFFFF" cx="432" cy="257" r="2"/>
+
+<!-- Hexagon vertices -->
+<circle fill="#C0392B" cx="340" cy="275" r="4"/><circle fill="#FFFFFF" cx="340" cy="275" r="1.8"/>
+<circle fill="#C0392B" cx="363" cy="288" r="4"/><circle fill="#FFFFFF" cx="363" cy="288" r="1.8"/>
+<circle fill="#C0392B" cx="363" cy="313" r="4"/><circle fill="#FFFFFF" cx="363" cy="313" r="1.8"/>
+<circle fill="#C0392B" cx="340" cy="326" r="4"/><circle fill="#FFFFFF" cx="340" cy="326" r="1.8"/>
+<circle fill="#C0392B" cx="317" cy="313" r="4"/><circle fill="#FFFFFF" cx="317" cy="313" r="1.8"/>
+<circle fill="#C0392B" cx="317" cy="288" r="4"/><circle fill="#FFFFFF" cx="317" cy="288" r="1.8"/>
+
+<!-- Central bindu -->
+<circle fill="#C0392B" cx="340" cy="310" r="7"/>
+<circle fill="#FFFFFF" cx="340" cy="310" r="3"/>
+<circle fill="#C0392B" cx="340" cy="310" r="1"/>
+
+<!-- Wordmark -->
+<text x="340" y="570" text-anchor="middle"
+  font-family="Georgia, Times New Roman, serif"
+  font-size="46" fill="#0F1923"
+  letter-spacing="-0.5">Red<tspan fill="#C0392B">arc</tspan> <tspan fill="rgba(15,25,35,0.5)" font-size="36">Labs</tspan></text>
+
+<!-- Tagline -->
+<text x="340" y="600" text-anchor="middle"
+  font-family="Helvetica Neue, Arial, sans-serif"
+  font-size="11" fill="rgba(15,25,35,0.45)"
+  letter-spacing="3">ADVERSARIAL INTERPRETABILITY · AI SAFETY</text>
+
+<!-- Rule -->
+<line x1="240" y1="618" x2="440" y2="618" stroke="#C0392B" stroke-width="1" opacity="0.5"/>
+
+<!-- Sub-tagline -->
+<text x="340" y="640" text-anchor="middle"
+  font-family="Helvetica Neue, Arial, sans-serif"
+  font-size="9.5" fill="rgba(15,25,35,0.45)"
+  letter-spacing="1.5">WHERE THE SAFETY LAYER HOLDS</text>
+
+<!-- Pre-incorporation badge -->
+<rect x="268" y="655" width="104" height="18" rx="2"
+  fill="none" stroke="rgba(192,57,43,0.3)" stroke-width="0.7"/>
+<text x="320" y="668" text-anchor="middle"
+  font-family="Helvetica Neue, Arial, sans-serif"
+  font-size="7.5" fill="rgba(192,57,43,0.6)"
+  letter-spacing="1.5">PRE-INCORPORATION</text>
+
+<!-- Corner marks -->
+<line stroke="rgba(192,57,43,0.3)" x1="40" y1="40" x2="70" y2="40" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.3)" x1="40" y1="40" x2="40" y2="70" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.3)" x1="640" y1="40" x2="610" y2="40" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.3)" x1="640" y1="40" x2="640" y2="70" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.3)" x1="40" y1="680" x2="70" y2="680" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.3)" x1="40" y1="680" x2="40" y2="650" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.3)" x1="640" y1="680" x2="610" y2="680" stroke-width="0.8"/>
+<line stroke="rgba(192,57,43,0.3)" x1="640" y1="680" x2="640" y2="650" stroke-width="0.8"/>
+
+</svg>
