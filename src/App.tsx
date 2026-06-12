@@ -1,6 +1,5 @@
 import './index.css'
 import { useEffect, useState } from 'react'
-import logoUrl from './assets/logo.svg'
 
 /* ─── SVG Icons ───────────────────────────────────────────────────────── */
 const ArrowUpRight = ({ className = 'w-3.5 h-3.5' }: { className?: string }) => (
@@ -41,7 +40,7 @@ function Nav() {
           {/* Logo — SVG renders dark-on-white natively; no filter needed in light mode */}
           <a href="#" aria-label="Redarc Labs" className="flex items-center">
             <img
-              src={logoUrl}
+              src="/src/assets/logo.svg"
               alt="Redarc Labs"
               className="h-7 w-auto"
               style={{ display: 'block' }}
@@ -137,7 +136,7 @@ function Hero() {
           {/* Left — full logo with yantra + wordmark + taglines */}
           <div style={{ flexShrink: 0 }}>
             <img
-              src={logoUrl}
+              src="/src/assets/logo.svg"
               alt="Redarc Labs"
               style={{
                 display: 'block',
@@ -877,7 +876,7 @@ function Footer() {
           {/* Brand */}
           <div>
             <img
-              src={logoUrl}
+              src="/src/assets/logo.svg"
               alt="Redarc Labs"
               style={{
                 display: 'block',
