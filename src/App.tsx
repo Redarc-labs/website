@@ -423,7 +423,7 @@ function Research() {
             {/* Directions sub-heading inline */}
             <p className="eyebrow" style={{ marginBottom: '0' }}>Directions</p>
             <div style={{ borderTop: '1px solid var(--color-rule)' }}>
-              {directions.map((d, i) => (
+              {directions.map((d) => (
                 <div
                   key={d.id}
                   style={{
@@ -521,7 +521,7 @@ function About() {
 
             {/* Assumptions — fact-check list */}
             <div style={{ borderTop: '1px solid var(--color-rule)' }}>
-              {assumptions.map((a, i) => (
+              {assumptions.map((a) => (
                 <div
                   key={a.n}
                   style={{
