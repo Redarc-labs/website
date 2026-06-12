@@ -759,7 +759,7 @@ function Landscape() {
             <span className="eyebrow">Landscape</span>
             <p className="h2" style={{ margin: 0, lineHeight: 1.2 }}>The intersection nobody occupies</p>
           </div>
-          <div>
+          <div className="min-w-0">
             <p
               style={{
                 fontSize: '0.9375rem',
