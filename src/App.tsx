@@ -233,7 +233,7 @@ function Publications() {
       style={{ background: 'var(--color-paper-warm)', borderBottom: '1px solid var(--color-rule)' }}
     >
       <div className="container-site">
-        <div className="grid md:grid-cols-[220px_1fr] gap-8 md:gap-16">
+        <div className="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
           {/* Left — label + heading stacked */}
           <div style={{ paddingTop: '0.125rem' }}>
             <span className="eyebrow">Publications</span>
@@ -358,7 +358,7 @@ function Research() {
       style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)' }}
     >
       <div className="container-site">
-        <div className="grid md:grid-cols-[220px_1fr] gap-8 md:gap-16">
+        <div className="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
           {/* Left — label + heading stacked */}
           <div>
             <span className="eyebrow">Ongoing work</span>
@@ -477,7 +477,7 @@ function About() {
       style={{ background: 'var(--color-paper-warm)', borderBottom: '1px solid var(--color-rule)' }}
     >
       <div className="container-site">
-        <div className="grid md:grid-cols-[220px_1fr] gap-8 md:gap-16">
+        <div className="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
           {/* Left — label + heading stacked */}
           <div style={{ paddingTop: '0.125rem' }}>
             <span className="eyebrow">Position</span>
@@ -603,7 +603,7 @@ function Team() {
       style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)' }}
     >
       <div className="container-site">
-        <div className="grid md:grid-cols-[220px_1fr] gap-8 md:gap-16">
+        <div className="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
           <div>
             <span className="eyebrow">Team</span>
             <p className="h2" style={{ margin: 0, lineHeight: 1.2 }}>Founders</p>
@@ -746,7 +746,7 @@ function Landscape() {
       style={{ background: 'var(--color-paper-warm)', borderBottom: '1px solid var(--color-rule)' }}
     >
       <div className="container-site">
-        <div className="grid md:grid-cols-[220px_1fr] gap-8 md:gap-16">
+        <div className="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
           <div>
             <span className="eyebrow">Landscape</span>
             <p className="h2" style={{ margin: 0, lineHeight: 1.2 }}>The intersection nobody occupies</p>
@@ -782,7 +782,6 @@ function Landscape() {
                           letterSpacing: '0.1em',
                           textTransform: 'uppercase',
                           color: 'var(--color-ink-muted)',
-                          whiteSpace: 'nowrap',
                         }}
                       >
                         {h}
