@@ -253,6 +253,14 @@ function Publications() {
   const pubs = [
     {
       year: '2026',
+      venue: 'TAIS 2026',
+      title: 'Loss Landscape Response to Adversarial Perturbation Is Architecture-Dependent',
+      authors: 'Shivam Dubey, Manan Wadhwa',
+      href: 'https://tais2026.cc/proceedings/dubey-landscape-response',
+      tags: ['Conference Paper', 'Adversarial Robustness', 'TAIS'],
+    },
+    {
+      year: '2026',
       venue: 'GenBio Workshop · ICML 2026',
       title: 'Toxin Feature Hierarchy in ESM-2',
       authors: 'Shivam Dubey, Manan Wadhwa',
@@ -281,7 +289,7 @@ function Publications() {
           {/* Left — label + heading stacked */}
           <div style={{ paddingTop: '0.125rem' }}>
             <span className="eyebrow">Publications</span>
-            <p className="h2" style={{ margin: 0, lineHeight: 1.2 }}>Published work</p>
+            <h2 className="h2" style={{ margin: 0, lineHeight: 1.2 }}>Published work</h2>
           </div>
 
           {/* Right — pub list */}
@@ -406,7 +414,7 @@ function Research() {
           {/* Left — label + heading stacked */}
           <div>
             <span className="eyebrow">Ongoing work</span>
-            <p className="h2" style={{ margin: '0 0 2rem 0', lineHeight: 1.2 }}>Repositories</p>
+            <h2 className="h2" style={{ margin: '0 0 2rem 0', lineHeight: 1.2 }}>Repositories</h2>
 
             {/* Directions label below on desktop */}
             <span className="eyebrow" style={{ marginTop: '0', display: 'none' }}>Directions</span>
@@ -525,14 +533,14 @@ function About() {
           {/* Left — label + heading stacked */}
           <div style={{ paddingTop: '0.125rem' }}>
             <span className="eyebrow">Position</span>
-            <p className="h2" style={{ margin: 0, lineHeight: 1.2 }}>Our thesis</p>
+            <h2 className="h2" style={{ margin: 0, lineHeight: 1.2 }}>Our thesis</h2>
           </div>
 
           {/* Right — content */}
           <div>
-            <p className="h2" style={{ maxWidth: '36ch', marginBottom: '0.875rem', fontSize: 'clamp(1.1rem, 2vw, 1.5rem)' }}>
+            <h2 className="h2" style={{ maxWidth: '36ch', marginBottom: '0.875rem', fontSize: 'clamp(1.1rem, 2vw, 1.5rem)' }}>
               Interpretability tools are designed for cooperative models.
-            </p>
+            </h2>
             <p
               style={{
                 fontSize: '0.875rem',
@@ -650,7 +658,7 @@ function Team() {
         <div className="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
           <div>
             <span className="eyebrow">Team</span>
-            <p className="h2" style={{ margin: 0, lineHeight: 1.2 }}>Founders</p>
+            <h2 className="h2" style={{ margin: 0, lineHeight: 1.2 }}>Founders</h2>
           </div>
           <div>
 
@@ -793,7 +801,7 @@ function Landscape() {
         <div className="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
           <div>
             <span className="eyebrow">Landscape</span>
-            <p className="h2" style={{ margin: 0, lineHeight: 1.2 }}>The intersection nobody occupies</p>
+            <h2 className="h2" style={{ margin: 0, lineHeight: 1.2 }}>The intersection nobody occupies</h2>
           </div>
           <div className="min-w-0">
             <p
