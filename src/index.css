@@ -33,6 +33,32 @@
   --radius-md:    6px;
 }
 
+@layer base {
+  .dark {
+    /* Brand */
+    --color-red:          #E55B50;
+    --color-red-dim:      rgba(229, 91, 80, 0.15);
+    --color-red-border:   rgba(229, 91, 80, 0.25);
+
+    /* Neutrals */
+    --color-ink:          #F0F0F0;
+    --color-ink-sec:      #A3A3A3;
+    --color-ink-muted:    #737373;
+    --color-ink-faint:    #404040;
+
+    --color-paper:        #0A0A0A;
+    --color-paper-warm:   #121212;
+    --color-paper-ruled:  #1A1A1A;
+
+    --color-rule:         #262626;
+    --color-rule-strong:  #404040;
+
+    /* Footer dark */
+    --color-soot:         #000000;
+    --color-soot-rule:    rgba(255,255,255,0.08);
+  }
+}
+
 /* ─── Base ──────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -200,10 +226,21 @@ body {
 
 /* ─── Nav scroll state ──────────────────────────────────────────── */
 .nav-solid {
-  background: rgba(255,255,255,0.94) !important;
+  background: color-mix(in srgb, var(--color-paper) 94%, transparent) !important;
   backdrop-filter: blur(12px);
   border-bottom-color: var(--color-rule) !important;
 }
+
+/* ─── Logo Dark Mode Overrides ──────────────────────────────────── */
+.dark img[src="/logo.svg"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.dark .rdl-logo-wrap svg rect[fill="#FFFFFF"] { fill: transparent !important; }
+.dark .rdl-logo-wrap svg circle[fill="#FFFFFF"] { fill: var(--color-paper) !important; }
+.dark .rdl-logo-wrap svg text[fill="#0F1923"] { fill: var(--color-ink) !important; }
+.dark .rdl-logo-wrap svg tspan[fill="rgba(15,25,35,0.5)"] { fill: var(--color-ink-sec) !important; }
+.dark .rdl-logo-wrap svg text[fill="rgba(15,25,35,0.45)"] { fill: var(--color-ink-sec) !important; }
 
 /* ─── Animations — minimal ──────────────────────────────────────── */
 @keyframes appear {
