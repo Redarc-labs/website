@@ -255,7 +255,7 @@ function Publications() {
       year: '2026',
       venue: 'TAIS 2026',
       title: 'Loss Landscape Response to Adversarial Perturbation Is Architecture-Dependent',
-      authors: 'Shivam Dubey, Manan Wadhwa',
+      authors: 'Shivam Dubey, Jason Hoelscher-Obermaier (Apart Research)',
       href: 'https://tais2026.cc/proceedings/dubey-landscape-response',
       tags: ['Conference Paper', 'Adversarial Robustness', 'TAIS'],
     },
