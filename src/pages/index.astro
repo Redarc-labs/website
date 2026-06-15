@@ -1,4 +1,4 @@
----
+lang---
 import '../index.css';
 import '../App.css';
 import Nav from '../components/Nav.astro';
@@ -224,6 +224,12 @@ const getPipHtml = (v: boolean | string) => {
       ]
     }
     </script>
+    <link rel="preload" href="/logo.svg" as="image" type="image/svg+xml">
+<link rel="dns-prefetch" href="//github.com">
+<link rel="dns-prefetch" href="//openreview.net">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Shivam Dubey, Manan Wadhwa">
+<meta name="theme-color" content="#000000">
   </head>
   <body>
     <Nav />
