@@ -165,6 +165,80 @@ const getPipHtml = (v: boolean | string) => {
   if (v === false) return '<span style="color: var(--color-ink-faint); font-family: var(--font-mono); font-size: 0.8rem;">—</span>';
   return `<span style="font-family: var(--font-mono); font-size: 0.625rem; color: var(--color-ink-muted); letter-spacing: 0.03em;">${v}</span>`;
 };
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ResearchOrganization",
+      "@id": "https://redarclabs.com/#organization",
+      "name": "Redarc Labs",
+      "url": "https://redarclabs.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://redarclabs.com/logo.svg",
+        "caption": "Redarc Labs Logo"
+      },
+      "image": "https://redarclabs.com/og-image.jpg",
+      "description": "Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative. We operate at the intersection of adversarial and mechanistic interpretability.",
+      "nonprofitStatus": "Nonprofit501c3",
+      "founders": people.map(p => ({
+        "@type": "Person",
+        "name": p.name,
+        "jobTitle": p.role,
+        "sameAs": p.socials.filter(s => !s.href.startsWith('mailto')).map(s => s.href)
+      })),
+      "sameAs": [
+        "https://www.linkedin.com/company/redarc-labs/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://redarclabs.com/#website",
+      "url": "https://redarclabs.com",
+      "name": "Redarc Labs",
+      "description": "Adversarial Interpretability for AI Safety",
+      "publisher": {
+        "@id": "https://redarclabs.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://redarclabs.com/#webpage",
+      "url": "https://redarclabs.com",
+      "name": "Redarc Labs — Adversarial Interpretability for AI Safety",
+      "isPartOf": {
+        "@id": "https://redarclabs.com/#website"
+      },
+      "about": {
+        "@id": "https://redarclabs.com/#organization"
+      },
+      "description": "Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative."
+    },
+    ...pubs.map(p => ({
+      "@type": "ScholarlyArticle",
+      "@id": `https://redarclabs.com/#publication-${p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      "headline": p.title,
+      "name": p.title,
+      "datePublished": `${p.year}-01-01`,
+      "publisher": {
+        "@type": "Organization",
+        "name": p.venue
+      },
+      "url": p.href,
+      "description": p.note || undefined,
+      "author": p.authors.split(',').map(auth => {
+        const name = auth.trim().replace(/\s*\(.*\)$/, '');
+        return {
+          "@type": "Person",
+          "name": name,
+          ...(name === 'Shivam Dubey' ? { "@id": "https://github.com/punctualprocrastinator/" } : {}),
+          ...(name === 'Manan Wadhwa' ? { "@id": "https://github.com/Manan-Wadhwa/" } : {})
+        };
+      })
+    }))
+  ]
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -172,20 +246,33 @@ const getPipHtml = (v: boolean | string) => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redarc Labs — Adversarial Interpretability for AI Safety</title>
-    <meta name="description" content="Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative. We operate at the intersection of adversarial and mechanistic interpretability — a field with no dedicated institution until now." />
-    <meta name="keywords" content="AI safety, adversarial interpretability, mechanistic interpretability, deception detection, AI alignment, deflection vectors" />
+    <meta name="description" content="Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative, focusing on adversarial conditions for AI safety." />
+    <meta name="keywords" content="AI safety, adversarial interpretability, mechanistic interpretability, deception detection, AI alignment, deflection vectors, neural network attractors, refusal circuits, sparse autoencoders" />
+    <meta name="author" content="Redarc Labs" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#B83228" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#E55B50" media="(prefers-color-scheme: dark)" />
+    
     <meta property="og:title" content="Redarc Labs — Adversarial Interpretability for AI Safety" />
-    <meta property="og:description" content="Building interpretability tools that work when models are actively non-cooperative." />
+    <meta property="og:description" content="Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative, focusing on adversarial conditions for AI safety." />
     <meta property="og:url" content="https://redarclabs.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://redarclabs.com/logo.svg" />
+    <meta property="og:image" content="https://redarclabs.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Redarc Labs — Adversarial Interpretability for AI Safety" />
+    <meta property="og:site_name" content="Redarc Labs" />
+    <meta property="og:locale" content="en_US" />
     
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Redarc Labs — Adversarial Interpretability for AI Safety" />
-    <meta name="twitter:description" content="Building interpretability tools that work when models are actively non-cooperative." />
-    <meta name="twitter:image" content="https://redarclabs.com/logo.svg" />
+    <meta name="twitter:description" content="Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative, focusing on adversarial conditions for AI safety." />
+    <meta name="twitter:image" content="https://redarclabs.com/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Redarc Labs — Adversarial Interpretability for AI Safety" />
 
     <link rel="canonical" href="https://redarclabs.com" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -204,26 +291,10 @@ const getPipHtml = (v: boolean | string) => {
         } catch (e) {}
       })();
     </script>
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Redarc Labs",
-      "url": "https://redarclabs.com",
-      "logo": "https://redarclabs.com/logo.svg",
-      "description": "Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative.",
-      "founders": [
-        {
-          "@type": "Person",
-          "name": "Shivam Dubey"
-        },
-        {
-          "@type": "Person",
-          "name": "Manan Wadhwa"
-        }
-      ]
-    }
-    </script>
+    <link rel="preload" href="/logo.svg" as="image" type="image/svg+xml" />
+    <link rel="dns-prefetch" href="//github.com" />
+    <link rel="dns-prefetch" href="//openreview.net" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
   <body>
     <Nav />
@@ -285,9 +356,9 @@ const getPipHtml = (v: boolean | string) => {
               <h2 class="h2" style="margin: 0; line-height: 1.2;">Our thesis</h2>
             </div>
             <div>
-              <h2 class="h2" style="max-width: 36ch; margin-bottom: 0.875rem; font-size: clamp(1.1rem, 2vw, 1.5rem);">
+              <h3 style="font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 380; letter-spacing: -0.03em; color: var(--color-ink); max-width: 36ch; margin-top: 0; margin-bottom: 0.875rem; line-height: 1.15;">
                 Interpretability tools are designed for cooperative models.
-              </h2>
+              </h3>
               <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 52ch; margin-bottom: 2rem;">
                 Four foundational assumptions break under adversarial conditions: the only conditions that matter for safety.
               </p>
@@ -325,17 +396,25 @@ const getPipHtml = (v: boolean | string) => {
             </div>
             <div>
               {pubs.map((p, i) => (
-                <div style={`padding-block: 1.5rem; border-top: 1px solid var(--color-rule); ${i === pubs.length - 1 ? 'border-bottom: 1px solid var(--color-rule);' : ''}`}>
+                <article 
+                  itemscope 
+                  itemtype="https://schema.org/ScholarlyArticle"
+                  style={`padding-block: 1.5rem; border-top: 1px solid var(--color-rule); ${i === pubs.length - 1 ? 'border-bottom: 1px solid var(--color-rule);' : ''}`}
+                >
                   <div style="display: flex; gap: 0.75rem; align-items: baseline; margin-bottom: 0.375rem; flex-wrap: wrap;">
-                    <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-ink); letter-spacing: 0.06em;">{p.year}</span>
-                    <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">{p.venue}</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-ink); letter-spacing: 0.06em;">
+                      <time itemprop="datePublished" datetime={p.year}>{p.year}</time>
+                    </span>
+                    <span itemprop="publisher" style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">
+                      {p.venue}
+                    </span>
                   </div>
-                  <h3 class="h3" style="margin-bottom: 0.3rem;">{p.title}</h3>
-                  <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-muted); margin-bottom: 0.625rem; letter-spacing: 0.01em;">
+                  <h3 itemprop="name" class="h3" style="margin-bottom: 0.3rem;">{p.title}</h3>
+                  <p itemprop="author" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-muted); margin-bottom: 0.625rem; letter-spacing: 0.01em;">
                     {p.authors}
                   </p>
                   {p.note && (
-                    <p style="font-size: 0.8125rem; color: var(--color-ink-sec); margin-bottom: 0.75rem; line-height: 1.6;">
+                    <p itemprop="description" style="font-size: 0.8125rem; color: var(--color-ink-sec); margin-bottom: 0.75rem; line-height: 1.6;">
                       {p.note}
                     </p>
                   )}
@@ -347,6 +426,7 @@ const getPipHtml = (v: boolean | string) => {
                       href={p.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      itemprop="url"
                       class="inline-flex items-center gap-1.5 link-paper"
                       style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink); text-decoration: none; border-bottom: 1px solid var(--color-rule-strong); padding-bottom: 1px; transition: border-color 120ms;"
                     >
@@ -357,7 +437,7 @@ const getPipHtml = (v: boolean | string) => {
                       Link forthcoming
                     </span>
                   )}
-                </div>
+                </article>
               ))}
             </div>
           </div>
@@ -379,28 +459,31 @@ const getPipHtml = (v: boolean | string) => {
             <div>
               <div class="flex flex-col gap-2.5" style="margin-bottom: 3rem;">
                 {repos.map(r => (
-                  <a
-                    href={r.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="repo-row group"
-                  >
-                    <div class="repo-icon" style="padding-top: 2px; color: var(--color-ink-faint); flex-shrink: 0; transition: color 120ms;" set:html={GithubIcon} />
-                    <div style="flex: 1;">
-                      <div class="flex flex-wrap items-baseline gap-3 mb-1">
-                        <span class="h3" style="font-size: 0.9375rem;">{r.title}</span>
-                        <span class="tag">{r.tag}</span>
+                  <article itemscope itemtype="https://schema.org/SoftwareSourceCode">
+                    <a
+                      href={r.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      itemprop="codeRepository"
+                      class="repo-row group"
+                    >
+                      <div class="repo-icon" style="padding-top: 2px; color: var(--color-ink-faint); flex-shrink: 0; transition: color 120ms;" set:html={GithubIcon} />
+                      <div style="flex: 1;">
+                        <div class="flex flex-wrap items-baseline gap-3 mb-1">
+                          <h3 itemprop="name" class="h3" style="font-size: 0.9375rem; margin: 0;">{r.title}</h3>
+                          <span itemprop="programmingLanguage" class="tag">{r.tag}</span>
+                        </div>
+                        <p itemprop="description" style="font-size: 0.8125rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0;">
+                          {r.desc}
+                        </p>
                       </div>
-                      <p style="font-size: 0.8125rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0;">
-                        {r.desc}
-                      </p>
-                    </div>
-                    <div
-                      class="repo-arrow group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      style="color: var(--color-ink-faint); flex-shrink: 0; align-self: center; transition: color 120ms, transform 120ms;"
-                      set:html={ArrowUpRight}
-                    />
-                  </a>
+                      <div
+                        class="repo-arrow group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        style="color: var(--color-ink-faint); flex-shrink: 0; align-self: center; transition: color 120ms, transform 120ms;"
+                        set:html={ArrowUpRight}
+                      />
+                    </a>
+                  </article>
                 ))}
               </div>
               <p class="eyebrow" style="margin-bottom: 0;">Directions</p>
@@ -411,7 +494,7 @@ const getPipHtml = (v: boolean | string) => {
                       {d.id}
                     </span>
                     <div>
-                      <p class="h3" style="margin-bottom: 0.375rem;">{d.title}</p>
+                      <h3 class="h3" style="font-size: 0.9375rem; margin: 0 0 0.375rem 0;">{d.title}</h3>
                       <p style="font-size: 0.8125rem; color: var(--color-ink-sec); line-height: 1.65; margin: 0;">
                         {d.body}
                       </p>
@@ -439,11 +522,11 @@ const getPipHtml = (v: boolean | string) => {
             <div>
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; align-items: start;">
                 {people.map(p => (
-                  <div>
-                    <h3 style="font-size: 1.0625rem; font-weight: 560; letter-spacing: -0.025em; color: var(--color-ink); margin-bottom: 0.125rem;">
+                  <article itemscope itemtype="https://schema.org/Person">
+                    <h3 itemprop="name" style="font-size: 1.0625rem; font-weight: 560; letter-spacing: -0.025em; color: var(--color-ink); margin-bottom: 0.125rem;">
                       {p.name}
                     </h3>
-                    <p style="font-size: 0.8125rem; color: var(--color-red); font-weight: 500; margin-bottom: 0.125rem;">
+                    <p itemprop="jobTitle" style="font-size: 0.8125rem; color: var(--color-red); font-weight: 500; margin-bottom: 0.125rem;">
                       {p.role}
                     </p>
                     <p style="font-family: var(--font-mono); font-size: 0.625rem; color: var(--color-ink-muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.75rem;">
@@ -455,6 +538,7 @@ const getPipHtml = (v: boolean | string) => {
                           href={s.href}
                           target={s.href.startsWith('mailto') ? undefined : '_blank'}
                           rel="noopener noreferrer"
+                          itemprop={s.href.startsWith('mailto') ? 'email' : 'sameAs'}
                           class="social-link"
                           style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-sec); text-decoration: none; border: 1px solid var(--color-rule-strong); border-radius: 2px; padding: 0.15rem 0.45rem; transition: border-color 120ms, color 120ms; letter-spacing: 0.04em;"
                         >
@@ -474,7 +558,7 @@ const getPipHtml = (v: boolean | string) => {
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </article>
                 ))}
               </div>
             </div>
@@ -484,6 +568,7 @@ const getPipHtml = (v: boolean | string) => {
 
       <!-- Landscape -->
       <section
+        id="landscape"
         class="sec"
         style="background: var(--color-paper-warm); border-bottom: 1px solid var(--color-rule);"
       >
