@@ -10,13 +10,9 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@types/node": "^24.12.3",
-    "eslint": "^10.3.0",
-    "globals": "^17.6.0",
     "tailwindcss": "^4.3.0",
-    "typescript": "~6.0.2",
-    "typescript-eslint": "^8.59.2"
+    "typescript": "~6.0.2"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
