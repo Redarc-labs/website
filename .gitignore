@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Astro
+.astro/
+
+# Cloudflare
+.wrangler/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
