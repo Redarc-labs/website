@@ -6,6 +6,8 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description: string;
+  /** Social-card description; falls back to `description` when omitted. */
+  ogDescription?: string;
   keywords?: string;
   ogImage?: string;
   /** Override the auto-computed canonical (defaults to site + current path). */
@@ -15,6 +17,7 @@ interface Props {
 const {
   title,
   description,
+  ogDescription,
   keywords,
   ogImage,
   canonical,
@@ -23,6 +26,7 @@ const {
 // Astro.site is set in astro.config.mjs → canonical/OG URLs are absolute.
 const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 const ogImageURL = new URL(ogImage ?? '/logo.svg', Astro.site).href;
+const socialDescription = ogDescription ?? description;
 ---
 <!doctype html>
 <html lang="en">
@@ -34,14 +38,14 @@ const ogImageURL = new URL(ogImage ?? '/logo.svg', Astro.site).href;
     {keywords && <meta name="keywords" content={keywords} />}
 
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={socialDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImageURL} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={socialDescription} />
     <meta name="twitter:image" content={ogImageURL} />
 
     <link rel="canonical" href={canonicalURL} />

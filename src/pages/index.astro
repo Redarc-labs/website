@@ -155,67 +155,12 @@ const pipStyle = (v: boolean | string) =>
   v === false ? 'color:var(--color-ink-faint);font-family:var(--font-mono);font-size:0.8rem' :
                 'font-family:var(--font-mono);font-size:0.625rem;color:var(--color-ink-muted);letter-spacing:0.03em';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redarc Labs — Adversarial Interpretability for AI Safety</title>
-    <meta name="description" content="Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative. We operate at the intersection of adversarial and mechanistic interpretability — a field with no dedicated institution until now." />
-    <meta name="keywords" content="AI safety, adversarial interpretability, mechanistic interpretability, deception detection, AI alignment, deflection vectors" />
-    <meta property="og:title" content="Redarc Labs — Adversarial Interpretability for AI Safety" />
-    <meta property="og:description" content="Building interpretability tools that work when models are actively non-cooperative." />
-    <meta property="og:url" content="https://redarclabs.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://redarclabs.com/logo.svg" />
-    
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Redarc Labs — Adversarial Interpretability for AI Safety" />
-    <meta name="twitter:description" content="Building interpretability tools that work when models are actively non-cooperative." />
-    <meta name="twitter:image" content="https://redarclabs.com/logo.svg" />
-
-    <link rel="canonical" href="https://redarclabs.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    
-    <script is:inline>
-      (function() {
-        try {
-          var savedTheme = localStorage.getItem('theme');
-          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        } catch (e) {}
-      })();
-    </script>
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Redarc Labs",
-      "url": "https://redarclabs.com",
-      "logo": "https://redarclabs.com/logo.svg",
-      "description": "Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative.",
-      "founders": [
-        {
-          "@type": "Person",
-          "name": "Shivam Dubey"
-        },
-        {
-          "@type": "Person",
-          "name": "Manan Wadhwa"
-        }
-      ]
-    }
-    </script>
-  </head>
-  <body>
-    <Nav />
+<Base
+  title="Redarc Labs — Adversarial Interpretability for AI Safety"
+  description="Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative. We operate at the intersection of adversarial and mechanistic interpretability — a field with no dedicated institution until now."
+  ogDescription="Building interpretability tools that work when models are actively non-cooperative."
+  keywords="AI safety, adversarial interpretability, mechanistic interpretability, deception detection, AI alignment, deflection vectors"
+>
     <main>
       <!-- Hero -->
       <section
@@ -515,77 +460,6 @@ const pipStyle = (v: boolean | string) =>
         </div>
       </section>
     </main>
-    
-    <!-- Footer -->
-    <footer style="background: var(--color-soot); border-top: 1px solid var(--color-soot-rule);">
-      <div class="container-site py-12 md:py-16">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
-          <div>
-            <img
-              src="/logo.svg"
-              alt="Redarc Labs"
-              style="display: block; height: 8rem; width: auto; margin-bottom: 1.25rem; filter: brightness(0) invert(1);"
-            />
-          </div>
-          <div>
-            <p style="font-family: var(--font-mono); font-size: 0.5875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 1rem;">
-              Work
-            </p>
-            <ul style="list-style: none; margin: 0; padding: 0;">
-              {[
-                ['Toxin Feature Hierarchy, ICML 2026', 'https://openreview.net/pdf?id=Nb3y9BzCOi'],
-                ['Attractor Framework', 'https://github.com/punctualprocrastinator/Attractor-Framework'],
-                ['Thinking Model Emotions', 'https://github.com/punctualprocrastinator/thinking-model-emotions'],
-                ['Bipolar Defense', 'https://github.com/punctualprocrastinator/bipolar_defense_repo'],
-              ].map(([label, href]) => (
-                <li style="margin-bottom: 0.625rem;">
-                  <a href={href} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 120ms;">{label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p style="font-family: var(--font-mono); font-size: 0.5875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 1rem;">
-              Contact
-            </p>
-            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.625rem;">
-              <li>
-                <a
-                  href="mailto:hello@redarclabs.com"
-                  class="footer-link"
-                  style="font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 120ms;"
-                >
-                  hello@redarclabs.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/company/redarc-labs/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="footer-link inline-flex items-center gap-1.5"
-                  style="font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 120ms;"
-                >
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div style="border-top: 1px solid var(--color-soot-rule); padding-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem;">
-          <span style="font-family: var(--font-mono); font-size: 0.5875rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.18);">
-            Redarc Labs · Where the safety layer holds
-          </span>
-          <div style="display: flex; gap: 1rem; align-items: center;">
-            <a
-              href="/"
-              class="footer-bottom-link"
-              style="font-family: var(--font-mono); font-size: 0.5875rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.18); text-decoration: none; transition: color 120ms;"
-            >redarclabs.com</a>
-          </div>
-        </div>
-      </div>
-    </footer>
 
     <style is:global>
       .link-paper:hover {
@@ -598,12 +472,5 @@ const pipStyle = (v: boolean | string) =>
         border-color: var(--color-red) !important;
         color: var(--color-red) !important;
       }
-      .footer-link:hover {
-        color: rgba(255,255,255,0.85) !important;
-      }
-      .footer-bottom-link:hover {
-        color: rgba(255,255,255,0.5) !important;
-      }
     </style>
-  </body>
-</html>
+</Base>
