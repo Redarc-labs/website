@@ -2,10 +2,11 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const [talks, workshops, curriculum] = await Promise.all([
+const [talks, workshops, curriculum, researchLog] = await Promise.all([
   getCollection('talks', ({ data }) => !data.draft),
   getCollection('workshops', ({ data }) => !data.draft),
   getCollection('curriculum', ({ data }) => !data.draft),
+  getCollection('researchLog', ({ data }) => !data.draft),
 ]);
 
 const cards = [
@@ -30,6 +31,13 @@ const cards = [
     desc: 'Hands-on workshops where cohorts build their first working interpretability tooling.',
     count: `${workshops.length} workshop${workshops.length === 1 ? '' : 's'}`,
   },
+  {
+    href: '/research-log',
+    eyebrow: 'Research log',
+    title: 'What has happened so far',
+    desc: 'A running log of what the community works through, week by week.',
+    count: `${researchLog.length} ${researchLog.length === 1 ? 'entry' : 'entries'}`,
+  },
 ];
 ---
 <Base
@@ -51,7 +59,7 @@ const cards = [
               Adversarial interpretability has no dedicated institution — so part of the work is building the field itself.
             </p>
             <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 60ch; margin: 0;">
-              Alongside the research, we teach: an open curriculum, public talks, and hands-on workshops that take a cohort from linear probes to detection tooling that holds up when models are actively non-cooperative.
+              Alongside the research, we teach: an open curriculum, public talks, and hands-on workshops that take a cohort from linear probes to detection tooling that holds up when models are actively non-cooperative — with a running log of what we work through, week by week.
             </p>
           </div>
         </div>
@@ -60,7 +68,7 @@ const cards = [
 
     <section class="sec" style="background: var(--color-paper-warm);">
       <div class="container-site">
-        <div class="grid gap-4 md:grid-cols-3">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map(c => (
             <a href={c.href} class="repo-row" style="flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1.75rem;">
               <div style="display: flex; justify-content: space-between; align-items: baseline; width: 100%; gap: 0.75rem;">

@@ -46,4 +46,16 @@ const curriculum = defineCollection({
   }),
 });
 
-export const collections = { talks, workshops, curriculum };
+const researchLog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/research-log' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    week: z.string().optional(),
+    summary: z.string(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { talks, workshops, curriculum, researchLog };

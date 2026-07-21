@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { formatDate } from '../../lib/date';
+
+const entries = (await getCollection('researchLog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+<Base
+  title="Research Log — Redarc Labs"
+  description="A running log of what the Redarc Labs research community works through, week by week — from transformer circuits and sparse autoencoders to adversarial robustness."
+  ogDescription="What our research community has been working through, week by week."
+  keywords="AI safety research log, mechanistic interpretability weekly, adversarial interpretability, research community"
+>
+  <main>
+    <section class="sec" style="padding-top: 7rem;">
+      <div class="container-site">
+        <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
+          <div style="padding-top: 0.125rem;">
+            <a href="/community" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 0.875rem;">← Community</a>
+            <span class="eyebrow">Research log</span>
+            <h2 class="h2" style="margin: 0; line-height: 1.2;">What has happened so far</h2>
+          </div>
+          <div>
+            <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 58ch; margin: 0 0 2.5rem 0;">
+              A running log of what our research community has been working through, week by week — newest first.
+            </p>
+
+            {entries.length === 0 ? (
+              <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-ink-muted);">No entries published yet.</p>
+            ) : (
+              <div style="display: grid; gap: 1rem;">
+                {entries.map(e => (
+                  <a href={`/research-log/${e.id}`} class="repo-row" style="flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 1.5rem 1.75rem;">
+                    <div style="display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; width: 100%;">
+                      {e.data.week && (
+                        <span style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-red);">{e.data.week}</span>
+                      )}
+                      <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase; margin-left: auto;">{formatDate(e.data.date)}</span>
+                    </div>
+                    <h3 class="h3" style="font-size: 1.05rem;">{e.data.title}</h3>
+                    <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0;">{e.data.summary}</p>
+                    {e.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2">
+                        {e.data.tags.map(tag => <span class="tag">{tag}</span>)}
+                      </div>
+                    )}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
