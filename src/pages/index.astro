@@ -459,18 +459,35 @@ const pipStyle = (v: boolean | string) =>
           </div>
         </div>
       </section>
-    </main>
 
-    <style is:global>
-      .link-paper:hover {
-        border-color: var(--color-ink) !important;
-      }
-      .repo-row:hover .repo-icon {
-        color: var(--color-ink) !important;
-      }
-      .social-link:hover {
-        border-color: var(--color-red) !important;
-        color: var(--color-red) !important;
-      }
-    </style>
+      <!-- Community / field building -->
+      <section class="sec" style="background: var(--color-paper);">
+        <div class="container-site">
+          <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
+            <div>
+              <span class="eyebrow">Field building</span>
+              <h2 class="h2" style="margin: 0; line-height: 1.2;">Growing the field</h2>
+            </div>
+            <div>
+              <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 56ch; margin: 0 0 1.5rem;">
+                Adversarial interpretability has no dedicated institution — so part of the work is building the field. Alongside the research we teach an open curriculum, give talks, and run hands-on workshops with each cohort.
+              </p>
+              <div class="flex flex-wrap items-center gap-x-5 gap-y-2" style="margin-bottom: 1.75rem;">
+                {[
+                  ['Curriculum', '/curriculum'],
+                  ['Talks', '/talks'],
+                  ['Workshops', '/workshops'],
+                ].map(([label, href]) => (
+                  <a href={href} class="nav-a" style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;">{label}</a>
+                ))}
+              </div>
+              <a href="/community" class="btn btn-ink">
+                Community
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 7h10M8 3l4 4-4 4" /></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 </Base>

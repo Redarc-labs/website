@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const [talks, workshops, curriculum] = await Promise.all([
+  getCollection('talks', ({ data }) => !data.draft),
+  getCollection('workshops', ({ data }) => !data.draft),
+  getCollection('curriculum', ({ data }) => !data.draft),
+]);
+
+const cards = [
+  {
+    href: '/curriculum',
+    eyebrow: 'Curriculum',
+    title: 'A syllabus for the field',
+    desc: 'The course we wish existed — from activations and probes to detection under adversarial pressure.',
+    count: `${curriculum.length} module${curriculum.length === 1 ? '' : 's'}`,
+  },
+  {
+    href: '/talks',
+    eyebrow: 'Talks',
+    title: 'Talks & lectures',
+    desc: 'Public talks and guest lectures introducing adversarial interpretability to new audiences.',
+    count: `${talks.length} talk${talks.length === 1 ? '' : 's'}`,
+  },
+  {
+    href: '/workshops',
+    eyebrow: 'Workshops',
+    title: 'Teaching the cohort',
+    desc: 'Hands-on workshops where cohorts build their first working interpretability tooling.',
+    count: `${workshops.length} workshop${workshops.length === 1 ? '' : 's'}`,
+  },
+];
+---
+<Base
+  title="Community & Field Building — Redarc Labs"
+  description="Adversarial interpretability has no dedicated institution. We're building the field: a curriculum, public talks, and hands-on workshops teaching the next cohort of researchers."
+  ogDescription="Building the field of adversarial interpretability — curriculum, talks, and workshops."
+  keywords="adversarial interpretability curriculum, AI safety workshops, mechanistic interpretability teaching, field building"
+>
+  <main>
+    <section class="sec" style="padding-top: 7rem; background: var(--color-paper); border-bottom: 1px solid var(--color-rule);">
+      <div class="container-site">
+        <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
+          <div style="padding-top: 0.125rem;">
+            <span class="eyebrow">Field building</span>
+            <h2 class="h2" style="margin: 0; line-height: 1.2;">Community</h2>
+          </div>
+          <div>
+            <p style="font-size: clamp(1.05rem, 2vw, 1.4rem); font-weight: 380; letter-spacing: -0.02em; line-height: 1.45; color: var(--color-ink); max-width: 46ch; margin: 0 0 1.25rem 0;">
+              Adversarial interpretability has no dedicated institution — so part of the work is building the field itself.
+            </p>
+            <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 60ch; margin: 0;">
+              Alongside the research, we teach: an open curriculum, public talks, and hands-on workshops that take a cohort from linear probes to detection tooling that holds up when models are actively non-cooperative.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" style="background: var(--color-paper-warm);">
+      <div class="container-site">
+        <div class="grid gap-4 md:grid-cols-3">
+          {cards.map(c => (
+            <a href={c.href} class="repo-row" style="flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1.75rem;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; width: 100%; gap: 0.75rem;">
+                <span class="eyebrow" style="margin-bottom: 0;">{c.eyebrow}</span>
+                <span style="font-family: var(--font-mono); font-size: 0.625rem; color: var(--color-ink-muted); letter-spacing: 0.04em;">{c.count}</span>
+              </div>
+              <h3 class="h3" style="font-size: 1.05rem;">{c.title}</h3>
+              <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0;">{c.desc}</p>
+              <span class="inline-flex items-center gap-1.5" style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink); margin-top: 0.25rem;">
+                Explore <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 7h10M8 3l4 4-4 4" /></svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

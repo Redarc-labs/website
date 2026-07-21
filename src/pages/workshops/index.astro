@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { formatDate } from '../../lib/date';
+
+const workshops = (await getCollection('workshops', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+<Base
+  title="Workshops — Redarc Labs"
+  description="Hands-on interpretability workshops from Redarc Labs — teaching cohorts to build working detection tooling for adversarial and mechanistic interpretability."
+  ogDescription="Hands-on workshops teaching cohorts to build interpretability tooling."
+  keywords="interpretability workshop, AI safety cohort, mechanistic interpretability training, adversarial interpretability"
+>
+  <main>
+    <section class="sec" style="padding-top: 7rem;">
+      <div class="container-site">
+        <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
+          <div style="padding-top: 0.125rem;">
+            <a href="/community" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 0.875rem;">← Community</a>
+            <span class="eyebrow">Workshops</span>
+            <h2 class="h2" style="margin: 0; line-height: 1.2;">Workshops</h2>
+          </div>
+          <div>
+            <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 58ch; margin: 0 0 2.5rem 0;">
+              Hands-on sessions where a cohort builds real interpretability tooling — from first probe to a working detector. Materials are linked where we can share them.
+            </p>
+
+            {workshops.length === 0 ? (
+              <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-ink-muted);">No workshops published yet.</p>
+            ) : (
+              workshops.map((w, i) => (
+                <a href={`/workshops/${w.id}`} class="repo-row" style={`flex-direction: column; align-items: flex-start; gap: 0.6rem; margin-bottom: ${i === workshops.length - 1 ? '0' : '0.75rem'};`}>
+                  <div style="display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap;">
+                    <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-ink); letter-spacing: 0.06em;">{formatDate(w.data.date)}</span>
+                    {w.data.cohort && (
+                      <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-red); letter-spacing: 0.04em; text-transform: uppercase;">{w.data.cohort}</span>
+                    )}
+                    {w.data.format && (
+                      <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">{w.data.format}</span>
+                    )}
+                  </div>
+                  <h3 class="h3" style="font-size: 1.05rem;">{w.data.title}</h3>
+                  <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0;">{w.data.summary}</p>
+                  {w.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2">
+                      {w.data.tags.map(tag => <span class="tag">{tag}</span>)}
+                    </div>
+                  )}
+                </a>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
