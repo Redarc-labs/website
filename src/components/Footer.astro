@@ -1,0 +1,77 @@
+---
+const workLinks: [string, string][] = [
+  ['Toxin Feature Hierarchy, ICML 2026', 'https://openreview.net/pdf?id=Nb3y9BzCOi'],
+  ['Attractor Framework', 'https://github.com/punctualprocrastinator/Attractor-Framework'],
+  ['Thinking Model Emotions', 'https://github.com/punctualprocrastinator/thinking-model-emotions'],
+  ['Bipolar Defense', 'https://github.com/punctualprocrastinator/bipolar_defense_repo'],
+];
+---
+<footer style="background: var(--color-soot); border-top: 1px solid var(--color-soot-rule);">
+  <div class="container-site py-12 md:py-16">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+      <div>
+        <img
+          src="/logo.svg"
+          alt="Redarc Labs"
+          style="display: block; height: 8rem; width: auto; margin-bottom: 1.25rem; filter: brightness(0) invert(1);"
+        />
+      </div>
+      <div>
+        <p style="font-family: var(--font-mono); font-size: 0.5875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 1rem;">
+          Work
+        </p>
+        <ul style="list-style: none; margin: 0; padding: 0;">
+          {workLinks.map(([label, href]) => (
+            <li style="margin-bottom: 0.625rem;">
+              <a href={href} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 120ms;">{label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p style="font-family: var(--font-mono); font-size: 0.5875rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 1rem;">
+          Contact
+        </p>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.625rem;">
+          <li>
+            <a
+              href="mailto:hello@redarclabs.com"
+              class="footer-link"
+              style="font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 120ms;"
+            >
+              hello@redarclabs.com
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/redarc-labs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link inline-flex items-center gap-1.5"
+              style="font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 120ms;"
+            >
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top: 1px solid var(--color-soot-rule); padding-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem;">
+      <span style="font-family: var(--font-mono); font-size: 0.5875rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.18);">
+        Redarc Labs · Where the safety layer holds
+      </span>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a
+          href="/"
+          class="footer-bottom-link"
+          style="font-family: var(--font-mono); font-size: 0.5875rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.18); text-decoration: none; transition: color 120ms;"
+        >redarclabs.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  .footer-link:hover { color: rgba(255,255,255,0.85) !important; }
+  .footer-bottom-link:hover { color: rgba(255,255,255,0.5) !important; }
+</style>
