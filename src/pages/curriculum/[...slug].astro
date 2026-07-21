@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const modules = await getCollection('curriculum', ({ data }) => !data.draft);
+  return modules.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Base
+  title={`${entry.data.title} — Curriculum — Redarc Labs`}
+  description={entry.data.summary}
+>
+  <main>
+    <section class="sec" style="padding-top: 7rem;">
+      <div class="container-site" style="max-width: 760px;">
+        <a href="/curriculum" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 1.25rem;">← Curriculum</a>
+
+        <div style="display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.75rem;">
+          <span class="eyebrow" style="margin-bottom: 0;">Module {String(entry.data.order).padStart(2, '0')}</span>
+          {entry.data.duration && (
+            <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">{entry.data.duration}</span>
+          )}
+        </div>
+        <h1 class="h2" style="margin: 0 0 1rem; line-height: 1.15;">{entry.data.title}</h1>
+        <p style="font-size: 1.05rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0 0 1.25rem; max-width: 60ch;">{entry.data.summary}</p>
+        {entry.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2" style="margin-bottom: 2.5rem;">
+            {entry.data.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        )}
+
+        <hr class="rule" style="margin-bottom: 2.5rem;" />
+
+        <article class="prose">
+          <Content />
+        </article>
+      </div>
+    </section>
+  </main>
+</Base>

@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const modules = (await getCollection('curriculum', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+<Base
+  title="Curriculum — Redarc Labs"
+  description="An open curriculum for adversarial and mechanistic interpretability: from residual-stream activations and linear probes to detection tooling that survives non-cooperative models."
+  ogDescription="An open curriculum for adversarial interpretability, from probes to detection under pressure."
+  keywords="interpretability curriculum, AI safety syllabus, mechanistic interpretability course, adversarial interpretability"
+>
+  <main>
+    <section class="sec" style="padding-top: 7rem;">
+      <div class="container-site">
+        <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
+          <div style="padding-top: 0.125rem;">
+            <a href="/community" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 0.875rem;">← Community</a>
+            <span class="eyebrow">Curriculum</span>
+            <h2 class="h2" style="margin: 0; line-height: 1.2;">Curriculum</h2>
+          </div>
+          <div>
+            <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 58ch; margin: 0 0 2.5rem 0;">
+              The course we wish existed when we started. Each module builds on the last — from reading activations to building detection that holds up under adversarial pressure.
+            </p>
+
+            {modules.length === 0 ? (
+              <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-ink-muted);">No modules published yet.</p>
+            ) : (
+              modules.map((m, i) => (
+                <a href={`/curriculum/${m.id}`} class="repo-row" style={`margin-bottom: ${i === modules.length - 1 ? '0' : '0.75rem'};`}>
+                  <span style="font-family: var(--font-mono); font-size: 1.05rem; font-weight: 600; color: var(--color-ink-faint); line-height: 1.2; min-width: 2ch;">{String(m.data.order).padStart(2, '0')}</span>
+                  <div style="flex: 1;">
+                    <div style="display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.3rem;">
+                      <h3 class="h3" style="font-size: 1rem;">{m.data.title}</h3>
+                      {m.data.duration && (
+                        <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">{m.data.duration}</span>
+                      )}
+                    </div>
+                    <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0 0 0.625rem 0;">{m.data.summary}</p>
+                    {m.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2">
+                        {m.data.tags.map(tag => <span class="tag">{tag}</span>)}
+                      </div>
+                    )}
+                  </div>
+                  <svg class="repo-icon w-4 h-4" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--color-ink-faint); flex-shrink: 0; margin-top: 0.25rem; transition: color 120ms;"><path stroke-linecap="round" stroke-linejoin="round" d="M2 7h10M8 3l4 4-4 4" /></svg>
+                </a>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import { formatDate } from '../../lib/date';
+
+export async function getStaticPaths() {
+  const workshops = await getCollection('workshops', ({ data }) => !data.draft);
+  return workshops.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const meta = [
+  formatDate(entry.data.date),
+  entry.data.cohort,
+  entry.data.format,
+  entry.data.location,
+].filter(Boolean);
+---
+<Base
+  title={`${entry.data.title} — Workshops — Redarc Labs`}
+  description={entry.data.summary}
+>
+  <main>
+    <section class="sec" style="padding-top: 7rem;">
+      <div class="container-site" style="max-width: 760px;">
+        <a href="/workshops" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 1.25rem;">← Workshops</a>
+
+        <span class="eyebrow">Workshop</span>
+        <h1 class="h2" style="margin: 0 0 1rem; line-height: 1.15;">{entry.data.title}</h1>
+        <p style="font-size: 1.05rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0 0 1rem; max-width: 60ch;">{entry.data.summary}</p>
+        <p style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 1.25rem;">
+          {meta.join(' · ')}
+        </p>
+        {entry.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2" style="margin-bottom: 1.5rem;">
+            {entry.data.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        )}
+        {entry.data.materials && (
+          <a href={entry.data.materials} target="_blank" rel="noopener noreferrer" class="btn btn-wire" style="margin-bottom: 2.5rem;">
+            Materials
+            <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 12L12 2M12 2H5M12 2v7" /></svg>
+          </a>
+        )}
+
+        <hr class="rule" style="margin-bottom: 2.5rem;" />
+
+        <article class="prose">
+          <Content />
+        </article>
+      </div>
+    </section>
+  </main>
+</Base>

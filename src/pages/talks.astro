@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { formatDate } from '../lib/date';
+
+const talks = (await getCollection('talks', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const linkStyle =
+  'font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink); text-decoration: none; border-bottom: 1px solid var(--color-rule-strong); padding-bottom: 1px; transition: border-color 120ms;';
+---
+<Base
+  title="Talks & Lectures — Redarc Labs"
+  description="Public talks and guest lectures from Redarc Labs on adversarial and mechanistic interpretability, deception detection, and interpretability that survives non-cooperative models."
+  ogDescription="Talks and guest lectures on adversarial interpretability from Redarc Labs."
+  keywords="AI safety talks, interpretability lectures, adversarial interpretability talk, mechanistic interpretability"
+>
+  <main>
+    <section class="sec" style="padding-top: 7rem;">
+      <div class="container-site">
+        <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
+          <div style="padding-top: 0.125rem;">
+            <a href="/community" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 0.875rem;">← Community</a>
+            <span class="eyebrow">Talks</span>
+            <h2 class="h2" style="margin: 0; line-height: 1.2;">Talks &amp; lectures</h2>
+          </div>
+          <div>
+            <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 58ch; margin: 0 0 2.5rem 0;">
+              Public talks and guest lectures introducing adversarial interpretability to new audiences. Slides and recordings are linked where available.
+            </p>
+
+            {talks.length === 0 ? (
+              <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-ink-muted);">No talks published yet.</p>
+            ) : (
+              talks.map((t, i) => (
+                <div style={`padding-block: 1.75rem; border-top: 1px solid var(--color-rule); ${i === talks.length - 1 ? 'border-bottom: 1px solid var(--color-rule);' : ''}`}>
+                  <div style="display: flex; gap: 0.75rem; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                    <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-ink); letter-spacing: 0.06em;">{formatDate(t.data.date)}</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">
+                      {t.data.venue}{t.data.location ? ` · ${t.data.location}` : ''}
+                    </span>
+                  </div>
+                  <h3 class="h3" style="font-size: 1.05rem; margin-bottom: 0.3rem;">{t.data.title}</h3>
+                  {t.data.speaker && (
+                    <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-muted); margin-bottom: 0.625rem;">{t.data.speaker}</p>
+                  )}
+                  {t.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2" style="margin-bottom: 0.875rem;">
+                      {t.data.tags.map(tag => <span class="tag">{tag}</span>)}
+                    </div>
+                  )}
+                  <div class="flex flex-wrap gap-4">
+                    {t.data.slides && (
+                      <a href={t.data.slides} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 link-paper" style={linkStyle}>
+                        Slides <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 12L12 2M12 2H5M12 2v7" /></svg>
+                      </a>
+                    )}
+                    {t.data.video && (
+                      <a href={t.data.video} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 link-paper" style={linkStyle}>
+                        Recording <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 12L12 2M12 2H5M12 2v7" /></svg>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
