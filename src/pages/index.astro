@@ -2,8 +2,8 @@
 import Base from '../layouts/Base.astro';
 import AnimatedLogo from '../components/AnimatedLogo.astro';
 
-// Five papers under review at NeurIPS 2026 workshops. `href` is added when a
-// preprint exists; a card without one renders "Preprint soon". `cohort: true`
+// Five papers at NeurIPS 2026 workshops. `href` is added when a preprint
+// exists; a card without one renders no link. `cohort: true`
 // marks papers that came out of cohort 01.
 const pubs = [
   {
@@ -140,7 +140,7 @@ const people = [
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/syntaxsavant/' },
     ],
     items: [
-      { label: 'Five NeurIPS 2026 workshop papers', meta: 'Co-first author · under review' },
+      { label: 'Five NeurIPS 2026 workshop papers', meta: 'Co-first author' },
       { label: 'Toxin Feature Hierarchy in ESM-2', meta: 'ICML 2026 GenBio Workshop' },
       { label: 'Fairness-Aware Speculative Decoding (FASD)', meta: 'MIT Technology Review cited · 77% bias reduction at 6% latency overhead' },
       { label: 'Fourier Gradient Regularisation (FGR)', meta: 'NeurIPS 2025 · 2× adversarial robustness on ResNet-18' },
@@ -158,7 +158,7 @@ const people = [
       { label: 'LinkedIn', href: 'https://linkedin.com/in/manan-wadhwa' },
     ],
     items: [
-      { label: 'Five NeurIPS 2026 workshop papers', meta: 'Co-first author · under review' },
+      { label: 'Five NeurIPS 2026 workshop papers', meta: 'Co-first author' },
       { label: 'Toxin Feature Hierarchy in ESM-2', meta: 'ICML 2026 GenBio Workshop' },
       { label: 'MARS Research Fellow', meta: 'Cambridge AI Safety Hub' },
       { label: 'Google Summer of Code 2026', meta: 'HumanAI organisation' },
@@ -280,14 +280,13 @@ const collaborators = [
             </div>
             <div>
               <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 52ch; margin-bottom: 1.5rem;">
-                Five papers under review at NeurIPS 2026 workshops. Workshop papers are non-archival.
+                Five papers at NeurIPS 2026 workshops. Workshop papers are non-archival.
               </p>
               {pubs.map((p, i) => (
                 <div style={`padding-block: 1.5rem; border-top: 1px solid var(--color-rule); ${i === pubs.length - 1 ? 'border-bottom: 1px solid var(--color-rule);' : ''}`}>
                   <div style="display: flex; gap: 0.75rem; align-items: baseline; margin-bottom: 0.375rem; flex-wrap: wrap;">
                     <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-ink); letter-spacing: 0.06em;">{p.year}</span>
                     <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">{p.venue}</span>
-                    <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-red); letter-spacing: 0.04em; text-transform: uppercase;">Under review</span>
                   </div>
                   <h3 class="h3">{p.title}</h3>
                   <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-muted); margin-bottom: 0.625rem; letter-spacing: 0.01em;">{p.authors}</p>
@@ -296,12 +295,10 @@ const collaborators = [
                     {p.tags.map(t => <span class="tag">{t}</span>)}
                     {p.cohort && <a href="/workshops/cohort-01" class="tag" style="text-decoration: none; color: var(--color-red); border-color: var(--color-red);">Cohort 01 project</a>}
                   </div>
-                  {p.href ? (
+                  {p.href && (
                     <a href={p.href} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 link-paper" style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink); text-decoration: none; border-bottom: 1px solid var(--color-rule-strong); padding-bottom: 1px; transition: border-color 120ms;">
                       Read paper <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 12L12 2M12 2H5M12 2v7" /></svg>
                     </a>
-                  ) : (
-                    <span style="font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-muted);">Preprint soon</span>
                   )}
                 </div>
               ))}
