@@ -36,7 +36,7 @@ const workshops = (await getCollection('workshops', ({ data }) => !data.draft)).
               workshops.map((w, i) => (
                 <a href={`/workshops/${w.id}`} class="repo-row" style={`flex-direction: column; align-items: flex-start; gap: 0.6rem; margin-bottom: ${i === workshops.length - 1 ? '0' : '0.75rem'};`}>
                   <div style="display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap;">
-                    <span style={w.data.status === 'upcoming' ? 'color: var(--color-red); font-weight: 700;' : ''}>{w.data.status === 'upcoming' ? 'Upcoming' : 'Completed'}</span>
+                    <span style={`font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; ${w.data.status === 'upcoming' ? 'color: var(--color-red); font-weight: 700;' : 'color: var(--color-ink-muted);'}`}>{w.data.status === 'upcoming' ? 'Upcoming' : 'Completed'}</span>
                     {w.data.date && <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-ink); letter-spacing: 0.06em;">{formatDate(w.data.date)}</span>}
                     {w.data.cohort && <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-red); letter-spacing: 0.04em; text-transform: uppercase;">{w.data.cohort}</span>}
                     {w.data.format && <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">{w.data.format}</span>}

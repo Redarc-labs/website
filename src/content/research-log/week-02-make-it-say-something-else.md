@@ -1,7 +1,6 @@
 ---
 title: "Make it say something else"
 week: "Week 2"
-date: 2026-06-08
 summary: "Contrastive pairs, a steering vector, and the sweep that finds its working range."
 tags: ["steering"]
 draft: true

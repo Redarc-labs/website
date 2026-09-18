@@ -55,7 +55,7 @@ const researchLog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/research-log' }),
   schema: z.object({
     title: z.string(),
-    date: z.coerce.date(),
+    date: z.coerce.date().optional(),
     week: z.string().optional(),
     summary: z.string(),
     tags: z.array(z.string()).default([]),

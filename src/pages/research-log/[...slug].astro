@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const meta = [entry.data.week, formatDate(entry.data.date)].filter(Boolean);
+const meta = [entry.data.week, entry.data.date ? formatDate(entry.data.date) : undefined].filter(Boolean);
 ---
 <Base
   title={`${entry.data.title} · Research log · Redarc Labs`}

@@ -5,4 +5,4 @@ tags: ["AI safety", "overview"]
 draft: false
 ---
 
-An introduction to technical AI safety for a technical audience new to the field: what the open problems are, which of them can be worked on today with open models and a laptop, and where the people who do this work publish and meet.
+An introduction to the technical AI safety landscape for a general technical audience.

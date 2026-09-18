@@ -22,7 +22,7 @@ const workLinks: [string, string][] = [
         <ul style="list-style: none; margin: 0; padding: 0;">
           {workLinks.map(([label, href]) => (
             <li style="margin-bottom: 0.625rem;">
-              <a href={href} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 120ms;">{label}</a>
+              <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined} class="footer-link" style="font-size: 0.8125rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 120ms;">{label}</a>
             </li>
           ))}
         </ul>
