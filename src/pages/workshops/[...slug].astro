@@ -11,14 +11,15 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const meta = [
-  formatDate(entry.data.date),
+  entry.data.status === 'upcoming' ? 'Upcoming' : 'Completed',
+  entry.data.date ? formatDate(entry.data.date) : undefined,
   entry.data.cohort,
   entry.data.format,
   entry.data.location,
 ].filter(Boolean);
 ---
 <Base
-  title={`${entry.data.title} — Workshops — Redarc Labs`}
+  title={`${entry.data.title} · Workshops · Redarc Labs`}
   description={entry.data.summary}
 >
   <main>
@@ -26,7 +27,7 @@ const meta = [
       <div class="container-site" style="max-width: 760px;">
         <a href="/workshops" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 1.25rem;">← Workshops</a>
 
-        <span class="eyebrow">Workshop</span>
+        <span class="eyebrow">Cohort</span>
         <h1 class="h2" style="margin: 0 0 1rem; line-height: 1.15;">{entry.data.title}</h1>
         <p style="font-size: 1.05rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0 0 1rem; max-width: 60ch;">{entry.data.summary}</p>
         <p style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 1.25rem;">
