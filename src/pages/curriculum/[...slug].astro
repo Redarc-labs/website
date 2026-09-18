@@ -11,7 +11,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 <Base
-  title={`${entry.data.title} — Curriculum — Redarc Labs`}
+  title={`${entry.data.title} · Curriculum · Redarc Labs`}
   description={entry.data.summary}
 >
   <main>
@@ -27,6 +27,9 @@ const { Content } = await render(entry);
         </div>
         <h1 class="h2" style="margin: 0 0 1rem; line-height: 1.15;">{entry.data.title}</h1>
         <p style="font-size: 1.05rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0 0 1.25rem; max-width: 60ch;">{entry.data.summary}</p>
+        {entry.data.milestone && (
+          <p style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-ink-muted); letter-spacing: 0.04em;">Milestone · {entry.data.milestone}</p>
+        )}
         {entry.data.tags.length > 0 && (
           <div class="flex flex-wrap gap-2" style="margin-bottom: 2.5rem;">
             {entry.data.tags.map(tag => <span class="tag">{tag}</span>)}

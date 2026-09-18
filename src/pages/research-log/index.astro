@@ -4,14 +4,14 @@ import { getCollection } from 'astro:content';
 import { formatDate } from '../../lib/date';
 
 const entries = (await getCollection('researchLog', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  (a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0),
 );
 ---
 <Base
-  title="Research Log — Redarc Labs"
-  description="A running log of what the Redarc Labs research community works through, week by week — from transformer circuits and sparse autoencoders to adversarial robustness."
-  ogDescription="What our research community has been working through, week by week."
-  keywords="AI safety research log, mechanistic interpretability weekly, adversarial interpretability, research community"
+  title="Research log · Redarc Labs"
+  description="Weekly notes from the current cohort: what was tried, what worked, and what did not."
+  ogDescription="Weekly notes from the current cohort."
+  keywords="AI safety research log, interpretability weekly notes, research community"
 >
   <main>
     <section class="sec" style="padding-top: 7rem;">
@@ -20,15 +20,15 @@ const entries = (await getCollection('researchLog', ({ data }) => !data.draft)).
           <div style="padding-top: 0.125rem;">
             <a href="/community" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 0.875rem;">← Community</a>
             <span class="eyebrow">Research log</span>
-            <h2 class="h2" style="margin: 0; line-height: 1.2;">What has happened so far</h2>
+            <h2 class="h2" style="margin: 0; line-height: 1.2;">Weekly notes</h2>
           </div>
           <div>
             <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 58ch; margin: 0 0 2.5rem 0;">
-              A running log of what our research community has been working through, week by week — newest first.
+              Notes from each session of the current cohort, newest first. Negative results go in too.
             </p>
 
             {entries.length === 0 ? (
-              <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-ink-muted);">No entries published yet.</p>
+              <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-ink-muted);">Notes are posted weekly while a cohort is running.</p>
             ) : (
               <div style="display: grid; gap: 1rem;">
                 {entries.map(e => (
@@ -37,7 +37,7 @@ const entries = (await getCollection('researchLog', ({ data }) => !data.draft)).
                       {e.data.week && (
                         <span style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-red);">{e.data.week}</span>
                       )}
-                      <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase; margin-left: auto;">{formatDate(e.data.date)}</span>
+                      {e.data.date && <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase; margin-left: auto;">{formatDate(e.data.date)}</span>}
                     </div>
                     <h3 class="h3" style="font-size: 1.05rem;">{e.data.title}</h3>
                     <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0;">{e.data.summary}</p>

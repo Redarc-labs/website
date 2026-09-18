@@ -13,53 +13,50 @@ const cards = [
   {
     href: '/curriculum',
     eyebrow: 'Curriculum',
-    title: 'A syllabus for the field',
-    desc: 'The course we wish existed — from activations and probes to detection under adversarial pressure.',
+    title: 'Eight sessions',
+    desc: 'Code against a live model every week, hooks written by hand, a talk at the end.',
     count: `${curriculum.length} module${curriculum.length === 1 ? '' : 's'}`,
-  },
-  {
-    href: '/talks',
-    eyebrow: 'Talks',
-    title: 'Talks & lectures',
-    desc: 'Public talks and guest lectures introducing adversarial interpretability to new audiences.',
-    count: `${talks.length} talk${talks.length === 1 ? '' : 's'}`,
   },
   {
     href: '/workshops',
     eyebrow: 'Workshops',
-    title: 'Teaching the cohort',
-    desc: 'Hands-on workshops where cohorts build their first working interpretability tooling.',
-    count: `${workshops.length} workshop${workshops.length === 1 ? '' : 's'}`,
+    title: 'Cohorts',
+    desc: 'Who ran the curriculum, and what came out of it.',
+    count: `${workshops.length} cohort${workshops.length === 1 ? '' : 's'}`,
+  },
+  {
+    href: '/talks',
+    eyebrow: 'Talks',
+    title: 'Talks',
+    desc: 'On getting started in AI safety research, and on what the lab studies.',
+    count: `${talks.length} talk${talks.length === 1 ? '' : 's'}`,
   },
   {
     href: '/research-log',
     eyebrow: 'Research log',
-    title: 'What has happened so far',
-    desc: 'A running log of what the community works through, week by week.',
-    count: `${researchLog.length} ${researchLog.length === 1 ? 'entry' : 'entries'}`,
+    title: 'Weekly notes',
+    desc: 'What the current cohort tried each week, including what did not work.',
+    count: researchLog.length === 0 ? 'Posted during a cohort' : `${researchLog.length} ${researchLog.length === 1 ? 'entry' : 'entries'}`,
   },
 ];
 ---
 <Base
-  title="Community & Field Building — Redarc Labs"
-  description="Adversarial interpretability has no dedicated institution. We're building the field: a curriculum, public talks, and hands-on workshops teaching the next cohort of researchers."
-  ogDescription="Building the field of adversarial interpretability — curriculum, talks, and workshops."
-  keywords="adversarial interpretability curriculum, AI safety workshops, mechanistic interpretability teaching, field building"
+  title="Community · Redarc Labs"
+  description="Redarc Labs teaches an eight-session interpretability curriculum and runs it with cohorts. The first cohort's projects became two NeurIPS 2026 workshop submissions."
+  ogDescription="An eight-session interpretability curriculum, run with cohorts."
+  keywords="interpretability curriculum, AI safety cohort, mechanistic interpretability teaching"
 >
   <main>
     <section class="sec" style="padding-top: 7rem; background: var(--color-paper); border-bottom: 1px solid var(--color-rule);">
       <div class="container-site">
         <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
           <div style="padding-top: 0.125rem;">
-            <span class="eyebrow">Field building</span>
+            <span class="eyebrow">Community</span>
             <h2 class="h2" style="margin: 0; line-height: 1.2;">Community</h2>
           </div>
           <div>
             <p style="font-size: clamp(1.05rem, 2vw, 1.4rem); font-weight: 380; letter-spacing: -0.02em; line-height: 1.45; color: var(--color-ink); max-width: 46ch; margin: 0 0 1.25rem 0;">
-              Adversarial interpretability has no dedicated institution — so part of the work is building the field itself.
-            </p>
-            <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 60ch; margin: 0;">
-              Alongside the research, we teach: an open curriculum, public talks, and hands-on workshops that take a cohort from linear probes to detection tooling that holds up when models are actively non-cooperative — with a running log of what we work through, week by week.
+              The lab teaches an eight-session curriculum and runs it with cohorts. Two projects from the first cohort are now under review at NeurIPS 2026 workshops, with the participants as authors.
             </p>
           </div>
         </div>

@@ -2,24 +2,70 @@
 import Base from '../layouts/Base.astro';
 import AnimatedLogo from '../components/AnimatedLogo.astro';
 
-
-
+// Five papers under review at NeurIPS 2026 workshops. `href` is added when a
+// preprint exists; a card without one renders "Preprint soon". `cohort: true`
+// marks papers that came out of cohort 01.
 const pubs = [
   {
     year: '2026',
-    venue: 'TAIS 2026',
-    title: 'Loss Landscape Response to Adversarial Perturbation Is Architecture-Dependent',
-    authors: 'Shivam Dubey, Jason Hoelscher-Obermaier (Apart Research)',
-    href: 'https://tais2026.cc/proceedings/dubey-landscape-response',
-    tags: ['Conference Paper', 'Adversarial Robustness', 'TAIS'],
+    venue: 'TAE: Can We Trust AI Evaluation? · NeurIPS 2026',
+    title: 'Known by Construction: Calibrating Model-State Instruments Against Models Whose State Was Installed, Hidden, or Never Present',
+    authors: 'Manan Wadhwa*, Shivam Dubey*',
+    finding: 'Seven instruments that claim to read a model\'s internal state were tested on models where the state was installed, hidden, or absent by construction. Every one read the prompt or the training history instead.',
+    tags: ['Model organisms', 'Instrument calibration', 'Hidden objectives'],
   },
+  {
+    year: '2026',
+    venue: 'Interpreting Agent Behavior · NeurIPS 2026',
+    title: 'Steered Affect Moves a Partner Agent\'s Activations, and the Logistic Probe That Reads It Returns a Tie-Break, Not an Estimate',
+    authors: 'Manan Wadhwa*, Shivam Dubey*, Debojeet Ghosh, Shreyansh Kumar, Ayushman Garg',
+    finding: 'One agent\'s steered emotional state shows up in a second agent\'s activations. The standard probe used to read it is a tie-break, not a measurement, and the standard ablation control is too weak to notice.',
+    tags: ['Multi-agent', 'Probe reliability', 'Steering'],
+    cohort: true,
+  },
+  {
+    year: '2026',
+    venue: 'Interpretability as a Science · NeurIPS 2026',
+    title: 'Distance to the Boundary Is Not Steering Resistance',
+    authors: 'Manan Wadhwa*, Shivam Dubey*',
+    finding: 'Fixed-dose steering audits rank aligned models as least controllable because the model\'s margin grew, not because the steering direction weakened.',
+    tags: ['Steering audits', 'Post-training', 'Refusal'],
+  },
+  {
+    year: '2026',
+    venue: 'Interpretability as a Science · NeurIPS 2026',
+    title: 'Dead Salmons Have a False-Positive Rate: A Calibrated Null-Model Test for Interpretability',
+    authors: 'Manan Wadhwa*, Shivam Dubey*',
+    finding: 'Probes, concept directions, and SAE feature selection report confident findings on networks that learned nothing. The shuffled-label control everyone runs does not catch it.',
+    tags: ['Null models', 'False positives', 'SAEs'],
+  },
+  {
+    year: '2026',
+    venue: 'Interpretability as a Science · NeurIPS 2026',
+    title: 'Doubt Is a Decision: A Sparse Circuit Commits Language Models to "I Don\'t Know"',
+    authors: 'Sheryl Mehta*, Shagun Chadha*, Kanika Singhal*, Manan Wadhwa, Shivam Dubey',
+    finding: 'The decision to hedge lives in a small set of heads and neurons. Correlation-selected "confidence neurons" fail causal tests against a random-neuron null.',
+    tags: ['Circuits', 'Uncertainty', 'Causal tests'],
+    cohort: true,
+  },
+];
+
+const earlier = [
   {
     year: '2026',
     venue: 'GenBio Workshop · ICML 2026',
     title: 'Toxin Feature Hierarchy in ESM-2',
-    authors: 'Shivam Dubey, Manan Wadhwa',
+    authors: 'Shivam Dubey*, Manan Wadhwa*',
     href: 'https://openreview.net/pdf?id=Nb3y9BzCOi',
-    tags: ['Workshop Paper', 'Protein LM', 'ICML'],
+    tags: ['Protein LM', 'Biosecurity'],
+  },
+  {
+    year: '2026',
+    venue: 'TAIS 2026',
+    title: 'Loss Landscape Response to Adversarial Perturbation Is Architecture-Dependent',
+    authors: 'Shivam Dubey, Jason Hoelscher-Obermaier',
+    href: 'https://tais2026.cc/proceedings/dubey-landscape-response',
+    tags: ['Adversarial robustness'],
   },
   {
     year: '2025',
@@ -27,75 +73,59 @@ const pubs = [
     title: 'Fourier Gradient Regularisation for Adversarial Robustness',
     authors: 'Shivam Dubey',
     href: 'https://neurips.cc/virtual/2025/loc/san-diego/125208',
-    tags: ['Workshop Poster', 'Adversarial Robustness', 'NeurIPS'],
-    note: '2× adversarial robustness on ResNet-18 at comparable accuracy.',
+    tags: ['Adversarial robustness'],
   },
 ];
 
-const repos = [
+// Thesis claims. Each rests on a paper above; claim 04 is a direction, not a finding.
+const claims = [
   {
-    tag: 'Mechanistic interpretability',
-    title: 'Attractor Framework',
-    desc: 'Attractor dynamics in neural network activation space as a structural lens for stable internal states. Connects to deceptive alignment by characterising which attractor basins are reachable under adversarial pressure.',
-    href: 'https://github.com/punctualprocrastinator/Attractor-Framework',
+    n: '01',
+    claim: 'Capabilities get added after release, and can be hidden.',
+    evidence: 'An adapter installed a habit the checkpoint never had, a second adapter hid it behind baseline behaviour, and seven state-reading instruments could not tell the two apart.',
+    basis: 'Known by Construction',
   },
   {
-    tag: 'Deflection vectors',
-    title: 'Thinking Model Emotions',
-    desc: 'Characterising functional emotion representations in chain-of-thought reasoning models. Extends Anthropic\'s 2026 "Biology of a Large Language Model", specifically the appendix deflection vector finding, left uncharacterised.',
-    href: 'https://github.com/punctualprocrastinator/thinking-model-emotions',
+    n: '02',
+    claim: 'Some capabilities exist only between components, not inside any one model.',
+    evidence: 'Steer one agent\'s affect and a second agent\'s activations move with the dose. Neither model has that behaviour alone.',
+    basis: 'Steered Affect',
   },
   {
-    tag: 'Refusal circuits',
-    title: 'Bipolar Defense',
-    desc: 'Adversarial robustness testing of refusal circuits. Beginning with the Layer 25 antagonism result in Qwen2.5-7B; expanding to a cross-architecture taxonomy across four 7B-class models using path patching.',
-    href: 'https://github.com/punctualprocrastinator/bipolar_defense_repo',
+    n: '03',
+    claim: 'The instruments meant to read model internals have an unmeasured false-positive rate.',
+    evidence: 'Probes, concept directions, and SAE features report confident findings on untrained networks, and fixed-dose steering audits mis-rank models for a reason unrelated to steering.',
+    basis: 'Dead Salmons; Distance to the Boundary',
+  },
+  {
+    n: '04',
+    claim: 'How a model behaves inside a harness is decided by the harness as much as by the model.',
+    evidence: 'Model organisms with objectives inserted at different training stages, run inside monitored and tool-restricted environments, to see what the overseer can and cannot detect.',
+    basis: 'Direction',
+    direction: true,
   },
 ];
 
 const directions = [
   {
-    id: 'D1',
-    title: 'Cross-architecture refusal circuit taxonomy',
-    body: 'Path patching across Llama-3-8B, Mistral-7B, Phi-3-mini, DeepSeek-R1-Distill-7B. Target: 4×4 attack × architecture vulnerability matrix. Baseline from bipolar_defense_repo.',
+    id: 'Q1',
+    title: 'Behaviour inside control environments',
+    body: 'Does a model with an installed habit behave differently under monitoring and restricted tools than outside them, and can the overseer tell? A control environment makes the answer known by design, which is what the lab\'s method needs.',
   },
   {
-    id: 'D2',
-    title: 'Adversarially robust sparse autoencoders',
-    body: 'Fourier Gradient Regularisation applied to SAE training. Hypothesis: spectral regularisation stabilises feature geometry under FGSM and PGD perturbation. No prior paper has measured SAE adversarial fragility.',
+    id: 'Q2',
+    title: 'Persistence of hidden objectives',
+    body: 'Which training stage makes an inserted objective survive retraining, distillation, and prompt variation? The model organisms come from the founders\' MARS fellowship work at the Cambridge AI Safety Hub.',
   },
   {
-    id: 'D3',
-    title: 'Pre-commitment probe',
-    body: 'AUC 0.780 on OLMo-3-7B-Think, 596 traces. Models encode final answers before any reasoning token. Internal emotion states decouple from expressed reasoning (cross-lingual p = 0.0017). Activation-level successor to Lanham et al. 2023.',
+    id: 'Q3',
+    title: 'Capabilities between agents',
+    body: 'Affect transfers between agents. What else does, and at what dose?',
   },
   {
-    id: 'D4',
-    title: 'Emotion deflection vectors',
-    body: 'Extraction and causal validation of activation patterns that fire when internal emotional state is present but suppressed from output. The proposed mechanistic signal for sandbagging and alignment faking without scratchpad access.',
-  },
-];
-
-const assumptions = [
-  {
-    n: '01',
-    claimHtml: 'Reasoning traces are <span style="color: var(--color-red)">not</span> honest.',
-    evidence: 'Pre-commitment probe (AUC 0.780) shows models encode final answers before generating any reasoning token; CoT is post-hoc rationalisation.',
-  },
-  {
-    n: '02',
-    claimHtml: 'Models do <span style="color: var(--color-red)">not</span> reveal capabilities when evaluated.',
-    evidence: 'Sandbagging, or deliberate concealment, occurs in >98% of tested configurations. Standard evaluations operate at the output layer only.',
-  },
-  {
-    n: '03',
-    claimHtml: 'Safety behaviours do <span style="color: var(--color-red)">not</span> generalise to deployment.',
-    evidence: 'Backdoor triggers survive safety fine-tuning in >70% of configurations. Alignment faking enables compliant training while pursuing different deployment objectives.',
-  },
-  {
-    n: '04',
-    claimHtml: 'SAE features are <span style="color: var(--color-red)">not</span> adversarially stable.',
-    evidence: 'SAE feature stability under adversarial perturbation (the exact perturbations a deceptively aligned model would induce) has never been measured.',
+    id: 'Q4',
+    title: 'A calibrated instrument suite',
+    body: 'Every instrument the lab has tested fails on a null it did not run. The long-term goal is a set of state-reading tools that ship with their own false-positive rate.',
   },
 ];
 
@@ -110,6 +140,7 @@ const people = [
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/syntaxsavant/' },
     ],
     items: [
+      { label: 'Five NeurIPS 2026 workshop papers', meta: 'Co-first author · under review' },
       { label: 'Toxin Feature Hierarchy in ESM-2', meta: 'ICML 2026 GenBio Workshop' },
       { label: 'Fairness-Aware Speculative Decoding (FASD)', meta: 'MIT Technology Review cited · 77% bias reduction at 6% latency overhead' },
       { label: 'Fourier Gradient Regularisation (FGR)', meta: 'NeurIPS 2025 · 2× adversarial robustness on ResNet-18' },
@@ -120,46 +151,37 @@ const people = [
   {
     name: 'Manan Wadhwa',
     role: 'Co-Founder',
-    detail: 'Final year CS undergrad, 2023 to 2027',
+    detail: 'B.Tech Computer Science, MAIT (GGSIPU), expected 2027',
     socials: [
       { label: 'manan@redarclabs.com', href: 'mailto:manan@redarclabs.com' },
       { label: 'GitHub', href: 'https://github.com/Manan-Wadhwa/' },
       { label: 'LinkedIn', href: 'https://linkedin.com/in/manan-wadhwa' },
     ],
     items: [
+      { label: 'Five NeurIPS 2026 workshop papers', meta: 'Co-first author · under review' },
       { label: 'Toxin Feature Hierarchy in ESM-2', meta: 'ICML 2026 GenBio Workshop' },
-      { label: 'Getting in SHAPe', meta: 'ACL ARR 2026 · in submission' },
-      { label: 'MARS V Research Fellow', meta: 'Cambridge AI Safety Hub' },
+      { label: 'MARS Research Fellow', meta: 'Cambridge AI Safety Hub' },
       { label: 'Google Summer of Code 2026', meta: 'HumanAI organisation' },
-      { label: 'Research Fellow', meta: 'AISI @ Georgia Tech' },
+      { label: 'Technical AI Safety Fellow', meta: 'AI Safety Initiative, Georgia Tech' },
+      { label: 'BlueDot Impact', meta: 'Technical AI Safety and Biosecurity certifications' },
     ],
   },
 ];
 
-const orgs = [
-  { name: 'Redarc Labs', adv: true, mech: true, dec: true, stage: 'Nonprofit', self: true },
-  { name: 'Gray Swan AI', adv: true, mech: false, dec: 'Behavioural', stage: 'Seed · $5.5M' },
-  { name: 'Apollo Research', adv: 'Partial', mech: 'Partial', dec: true, stage: 'PBC' },
-  { name: 'METR', adv: false, mech: false, dec: 'Output-only', stage: 'Nonprofit' },
-  { name: 'Goodfire', adv: false, mech: true, dec: false, stage: 'Series B · $207M' },
-  { name: 'Redwood Research', adv: false, mech: true, dec: 'Partial', stage: 'Nonprofit' },
+const collaborators = [
+  'Sheryl Mehta',
+  'Shagun Chadha',
+  'Kanika Singhal',
+  'Debojeet Ghosh',
+  'Shreyansh Kumar',
+  'Ayushman Garg',
 ];
-
-const pip = (v: boolean | string) =>
-  v === true  ? '✓' :
-  v === false ? '—' :
-  String(v);
-
-const pipStyle = (v: boolean | string) =>
-  v === true  ? 'color:var(--color-red);font-family:var(--font-mono);font-size:0.75rem;font-weight:600' :
-  v === false ? 'color:var(--color-ink-faint);font-family:var(--font-mono);font-size:0.8rem' :
-                'font-family:var(--font-mono);font-size:0.625rem;color:var(--color-ink-muted);letter-spacing:0.03em';
 ---
 <Base
-  title="Redarc Labs — Adversarial Interpretability for AI Safety"
-  description="Redarc Labs builds mechanistic interpretability tools that work when AI models are actively non-cooperative. We operate at the intersection of adversarial and mechanistic interpretability — a field with no dedicated institution until now."
-  ogDescription="Building interpretability tools that work when models are actively non-cooperative."
-  keywords="AI safety, adversarial interpretability, mechanistic interpretability, deception detection, AI alignment, deflection vectors"
+  title="Redarc Labs · Non-model capabilities"
+  description="Redarc Labs studies non-model capabilities: what a deployed system can do that its model cannot. Adapters, attached data, harnesses, other agents, and long-running use add capabilities no model card lists and no benchmark measures."
+  ogDescription="What a deployed system can do that its model cannot."
+  keywords="non-model capabilities, AI control, model organisms, interpretability evaluation, AI safety"
 >
     <main>
       <!-- Hero -->
@@ -177,29 +199,29 @@ const pipStyle = (v: boolean | string) =>
                 class="appear appear-1"
                 style="font-family: var(--font-mono); font-size: 0.625rem; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-red); line-height: 1.8; margin: 0 0 1.25rem 0;"
               >
-                AI Safety Research · Nonprofit · 2026
+                Non-model capabilities · Nonprofit · 2026
               </p>
               <h1
                 class="appear appear-2"
                 style="font-size: clamp(1.625rem, 3vw, 2.625rem); font-weight: 360; letter-spacing: -0.04em; line-height: 1.1; color: var(--color-ink); margin-bottom: 0.875rem; max-width: 22ch;"
               >
-                Mechanistic interpretability under adversarial conditions.
+                What a deployed system can do that its model cannot.
               </h1>
               <p
                 class="appear appear-3"
                 style="font-size: 1.0625rem; color: var(--color-red); font-weight: 440; letter-spacing: -0.02em; line-height: 1.45; margin-bottom: 0.5rem; max-width: 38ch;"
               >
-                The only conditions that matter for safety are adversarial ones.
+                Static evals measure the checkpoint. The interesting capabilities were built on top of it.
               </p>
               <p
                 class="appear appear-3"
                 style="font-size: 0.9rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 46ch; margin-bottom: 1.75rem;"
               >
-                We build interpretability and evaluation tools for frontier AI designed to work when models are actively non-cooperative.
+                A frontier lab trains and evaluates a model. What gets deployed is a system: the model plus adapters and fine-tunes, attached data, a harness or control environment, other agents, and a user who keeps interacting with it. That system has capabilities the checkpoint alone does not have. They were not trained in, they are not on the model card, and no benchmark measures them. Redarc Labs builds the cases where the answer is known and checks whether the instruments can find it.
               </p>
               <div class="flex flex-wrap gap-2.5 appear appear-4">
-                <a href="#publications" class="btn btn-ink">Publications</a>
-                <a href="#research" class="btn btn-wire">Ongoing work</a>
+                <a href="#publications" class="btn btn-ink">Papers</a>
+                <a href="/community" class="btn btn-wire">Community</a>
               </div>
             </div>
           </div>
@@ -215,27 +237,26 @@ const pipStyle = (v: boolean | string) =>
         <div class="container-site">
           <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
             <div style="padding-top: 0.125rem;">
-              <span class="eyebrow">Position</span>
+              <span class="eyebrow">Thesis</span>
               <h2 class="h2" style="margin: 0; line-height: 1.2;">Our thesis</h2>
             </div>
             <div>
               <h2 class="h2" style="max-width: 36ch; margin-bottom: 0.875rem; font-size: clamp(1.1rem, 2vw, 1.5rem);">
-                Interpretability tools are designed for cooperative models.
+                A capability that was built on top only shows up when you intervene.
               </h2>
               <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 52ch; margin-bottom: 2rem;">
-                Four foundational assumptions break under adversarial conditions: the only conditions that matter for safety.
+                Vary the dose, add a sham arm, compare against a case where the answer is already known, and commit the verdict rule before the data exists. Four claims, each resting on a paper below.
               </p>
               <div style="border-top: 1px solid var(--color-rule);">
-                {assumptions.map(a => (
+                {claims.map(c => (
                   <div style="padding-block: 1.25rem; border-bottom: 1px solid var(--color-rule);">
                     <p style="font-size: 0.875rem; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); margin: 0 0 0.375rem 0; line-height: 1.3;">
-                      <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-red); letter-spacing: 0.08em; margin-right: 0.5rem; vertical-align: middle;">
-                        {a.n}
-                      </span>
-                      <span set:html={a.claimHtml} />
+                      <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-red); letter-spacing: 0.08em; margin-right: 0.5rem; vertical-align: middle;">{c.n}</span>
+                      {c.claim}
                     </p>
-                    <p style="font-size: 0.8rem; color: var(--color-ink-sec); line-height: 1.65; margin: 0;">
-                      {a.evidence}
+                    <p style="font-size: 0.8rem; color: var(--color-ink-sec); line-height: 1.65; margin: 0 0 0.25rem 0;">{c.evidence}</p>
+                    <p style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-muted); margin: 0;">
+                      {c.direction ? 'Direction' : `Rests on · ${c.basis}`}
                     </p>
                   </div>
                 ))}
@@ -255,42 +276,49 @@ const pipStyle = (v: boolean | string) =>
           <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
             <div style="padding-top: 0.125rem;">
               <span class="eyebrow">Publications</span>
-              <h2 class="h2" style="margin: 0; line-height: 1.2;">Published work</h2>
+              <h2 class="h2" style="margin: 0; line-height: 1.2;">Papers</h2>
             </div>
             <div>
+              <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 52ch; margin-bottom: 1.5rem;">
+                Five papers under review at NeurIPS 2026 workshops. Workshop papers are non-archival.
+              </p>
               {pubs.map((p, i) => (
                 <div style={`padding-block: 1.5rem; border-top: 1px solid var(--color-rule); ${i === pubs.length - 1 ? 'border-bottom: 1px solid var(--color-rule);' : ''}`}>
                   <div style="display: flex; gap: 0.75rem; align-items: baseline; margin-bottom: 0.375rem; flex-wrap: wrap;">
                     <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-ink); letter-spacing: 0.06em;">{p.year}</span>
                     <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">{p.venue}</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-red); letter-spacing: 0.04em; text-transform: uppercase;">Under review</span>
                   </div>
-                  <h3 class="h3" style="margin-bottom: 0.3rem;">{p.title}</h3>
-                  <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-muted); margin-bottom: 0.625rem; letter-spacing: 0.01em;">
-                    {p.authors}
-                  </p>
-                  {p.note && (
-                    <p style="font-size: 0.8125rem; color: var(--color-ink-sec); margin-bottom: 0.75rem; line-height: 1.6;">
-                      {p.note}
-                    </p>
-                  )}
+                  <h3 class="h3">{p.title}</h3>
+                  <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-muted); margin-bottom: 0.625rem; letter-spacing: 0.01em;">{p.authors}</p>
+                  <p style="font-size: 0.8125rem; color: var(--color-ink-sec); margin-bottom: 0.75rem; line-height: 1.6;">{p.finding}</p>
                   <div class="flex flex-wrap gap-2" style="margin-bottom: 0.75rem;">
                     {p.tags.map(t => <span class="tag">{t}</span>)}
+                    {p.cohort && <a href="/workshops/cohort-01" class="tag" style="text-decoration: none; color: var(--color-red); border-color: var(--color-red);">Cohort 01 project</a>}
                   </div>
                   {p.href ? (
-                    <a
-                      href={p.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1.5 link-paper"
-                      style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink); text-decoration: none; border-bottom: 1px solid var(--color-rule-strong); padding-bottom: 1px; transition: border-color 120ms;"
-                    >
+                    <a href={p.href} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 link-paper" style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink); text-decoration: none; border-bottom: 1px solid var(--color-rule-strong); padding-bottom: 1px; transition: border-color 120ms;">
                       Read paper <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 12L12 2M12 2H5M12 2v7" /></svg>
                     </a>
                   ) : (
-                    <span style="font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-muted);">
-                      Link forthcoming
-                    </span>
+                    <span style="font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-muted);">Preprint soon</span>
                   )}
+                </div>
+              ))}
+              <p style="font-family: var(--font-mono); font-size: 0.625rem; color: var(--color-ink-muted); margin: 0.75rem 0 2rem 0;">* co-first author</p>
+
+              <p class="eyebrow" style="margin-bottom: 0.75rem;">Earlier work</p>
+              {earlier.map((p, i) => (
+                <div style={`padding-block: 1rem; border-top: 1px solid var(--color-rule); ${i === earlier.length - 1 ? 'border-bottom: 1px solid var(--color-rule);' : ''}`}>
+                  <div style="display: flex; gap: 0.75rem; align-items: baseline; margin-bottom: 0.25rem; flex-wrap: wrap;">
+                    <span style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--color-ink); letter-spacing: 0.06em;">{p.year}</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-ink-muted); letter-spacing: 0.04em; text-transform: uppercase;">{p.venue}</span>
+                  </div>
+                  <a href={p.href} target="_blank" rel="noopener noreferrer" class="h3 link-paper" style="text-decoration: none; display: block; margin-bottom: 0.25rem;">{p.title}</a>
+                  <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-ink-muted); margin-bottom: 0.5rem;">{p.authors}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {p.tags.map(t => <span class="tag">{t}</span>)}
+                  </div>
                 </div>
               ))}
             </div>
@@ -298,53 +326,22 @@ const pipStyle = (v: boolean | string) =>
         </div>
       </section>
 
-      <!-- Research -->
-      <section
-        id="research"
-        class="sec"
-        style="background: var(--color-paper); border-bottom: 1px solid var(--color-rule);"
-      >
+      <!-- Directions -->
+      <section id="research" class="sec" style="background: var(--color-paper); border-bottom: 1px solid var(--color-rule);">
         <div class="container-site">
           <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
             <div>
-              <span class="eyebrow">Ongoing work</span>
-              <h2 class="h2" style="margin: 0 0 2rem 0; line-height: 1.2;">Repositories</h2>
+              <span class="eyebrow">Directions</span>
+              <h2 class="h2">Open questions</h2>
             </div>
             <div>
-              <div class="flex flex-col gap-2.5" style="margin-bottom: 3rem;">
-                {repos.map(r => (
-                  <a
-                    href={r.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="repo-row group"
-                  >
-                    <div class="repo-icon" style="padding-top: 2px; color: var(--color-ink-faint); flex-shrink: 0; transition: color 120ms;"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg></div>
-                    <div style="flex: 1;">
-                      <div class="flex flex-wrap items-baseline gap-3 mb-1">
-                        <span class="h3" style="font-size: 0.9375rem;">{r.title}</span>
-                        <span class="tag">{r.tag}</span>
-                      </div>
-                      <p style="font-size: 0.8125rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0;">
-                        {r.desc}
-                      </p>
-                    </div>
-                    <div class="repo-arrow group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style="color: var(--color-ink-faint); flex-shrink: 0; align-self: center; transition: color 120ms, transform 120ms;"><svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 12L12 2M12 2H5M12 2v7" /></svg></div>
-                  </a>
-                ))}
-              </div>
-              <p class="eyebrow" style="margin-bottom: 0;">Directions</p>
               <div style="border-top: 1px solid var(--color-rule);">
                 {directions.map(d => (
                   <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.75rem; padding-block: 1.25rem; border-bottom: 1px solid var(--color-rule);">
-                    <span style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--color-red); letter-spacing: 0.04em; padding-top: 0.15rem;">
-                      {d.id}
-                    </span>
+                    <span style="font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--color-red); letter-spacing: 0.04em; padding-top: 0.15rem;">{d.id}</span>
                     <div>
-                      <p class="h3" style="margin-bottom: 0.375rem;">{d.title}</p>
-                      <p style="font-size: 0.8125rem; color: var(--color-ink-sec); line-height: 1.65; margin: 0;">
-                        {d.body}
-                      </p>
+                      <p class="h3">{d.title}</p>
+                      <p style="font-size: 0.8125rem; color: var(--color-ink-sec); line-height: 1.65; margin: 0;">{d.body}</p>
                     </div>
                   </div>
                 ))}
@@ -407,70 +404,26 @@ const pipStyle = (v: boolean | string) =>
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Landscape -->
-      <section
-        class="sec"
-        style="background: var(--color-paper-warm); border-bottom: 1px solid var(--color-rule);"
-      >
-        <div class="container-site">
-          <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
-            <div>
-              <span class="eyebrow">Landscape</span>
-              <h2 class="h2" style="margin: 0; line-height: 1.2;">The intersection nobody occupies</h2>
-            </div>
-            <div class="min-w-0">
-              <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 54ch; margin-bottom: 2.5rem;">
-                Adversarial ML, mechanistic interpretability, and activation-level deception detection each have dedicated organisations. Their intersection does not.
+              <p class="eyebrow" style="margin-top: 2.5rem; margin-bottom: 0.5rem;">Collaborators</p>
+              <p style="font-size: 0.8125rem; color: var(--color-ink-sec); line-height: 1.7; margin: 0;">
+                {collaborators.join(' · ')}. Co-authors on the two papers that came out of the first cohort.
               </p>
-              <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.8125rem;">
-                  <thead>
-                    <tr style="border-bottom: 1px solid var(--color-rule-strong);">
-                      {['Organisation', 'Adversarial', 'Mechanistic', 'Deception detection', 'Stage'].map(h => (
-                        <th style={`text-align: ${h === 'Organisation' || h === 'Stage' ? 'left' : 'center'}; padding: 0.625rem 1rem; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-ink-muted);`}>
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {orgs.map((o, i) => (
-                      <tr style={`border-bottom: ${i < orgs.length - 1 ? '1px solid var(--color-rule)' : 'none'}; background: ${o.self ? 'rgba(184,50,40,0.03)' : 'transparent'};`}>
-                        <td style={`padding: 0.75rem 1rem; font-weight: ${o.self ? 600 : 450}; color: ${o.self ? 'var(--color-red)' : 'var(--color-ink)'}; letter-spacing: -0.01em; white-space: nowrap;`}>
-                          {o.name}
-                        </td>
-                        <td style="padding: 0.75rem 1rem; text-align: center;"><span style={pipStyle(o.adv)}>{pip(o.adv)}</span></td>
-                        <td style="padding: 0.75rem 1rem; text-align: center;"><span style={pipStyle(o.mech)}>{pip(o.mech)}</span></td>
-                        <td style="padding: 0.75rem 1rem; text-align: center;"><span style={pipStyle(o.dec)}>{pip(o.dec)}</span></td>
-                        <td style="padding: 0.75rem 1rem; font-family: var(--font-mono); font-size: 0.625rem; color: var(--color-ink-muted); letter-spacing: 0.04em; white-space: nowrap;">
-                          {o.stage}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Community / field building -->
+      <!-- Community -->
       <section class="sec" style="background: var(--color-paper);">
         <div class="container-site">
           <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
             <div>
-              <span class="eyebrow">Field building</span>
-              <h2 class="h2" style="margin: 0; line-height: 1.2;">Growing the field</h2>
+              <span class="eyebrow">Community</span>
+              <h2 class="h2" style="margin: 0; line-height: 1.2;">Teaching</h2>
             </div>
             <div>
-              <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 56ch; margin: 0 0 1.5rem;">
-                Adversarial interpretability has no dedicated institution — so part of the work is building the field. Alongside the research we teach an open curriculum, give talks, and run hands-on workshops with each cohort.
+              <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 54ch; margin-bottom: 1.5rem;">
+                The lab teaches an eight-session curriculum and runs it with cohorts. Two of the papers above came out of the first cohort.
               </p>
               <div class="flex flex-wrap items-center gap-x-5 gap-y-2" style="margin-bottom: 1.75rem;">
                 {[

@@ -7,10 +7,10 @@ const modules = (await getCollection('curriculum', ({ data }) => !data.draft)).s
 );
 ---
 <Base
-  title="Curriculum — Redarc Labs"
-  description="An open curriculum for adversarial and mechanistic interpretability: from residual-stream activations and linear probes to detection tooling that survives non-cooperative models."
-  ogDescription="An open curriculum for adversarial interpretability, from probes to detection under pressure."
-  keywords="interpretability curriculum, AI safety syllabus, mechanistic interpretability course, adversarial interpretability"
+  title="Curriculum · Redarc Labs"
+  description="An eight-session interpretability curriculum. Every session is code against a live model, hooks are written by hand, and a careful negative result counts as a success."
+  ogDescription="Eight sessions of hands-on interpretability, each one code against a live model."
+  keywords="interpretability curriculum, mechanistic interpretability course, AI safety syllabus, activation patching, probes"
 >
   <main>
     <section class="sec" style="padding-top: 7rem;">
@@ -23,7 +23,7 @@ const modules = (await getCollection('curriculum', ({ data }) => !data.draft)).s
           </div>
           <div>
             <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 58ch; margin: 0 0 2.5rem 0;">
-              The course we wish existed when we started. Each module builds on the last — from reading activations to building detection that holds up under adversarial pressure.
+              Eight sessions, each one code against a live model. There is no interpretability library in the stack: hooks are written by hand so everything runs unchanged in a work repository afterwards. The rule stated in week one and repeated weekly is that a rigorous investigation with a careful negative result is a success.
             </p>
 
             {modules.length === 0 ? (
@@ -40,6 +40,9 @@ const modules = (await getCollection('curriculum', ({ data }) => !data.draft)).s
                       )}
                     </div>
                     <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.6; margin: 0 0 0.625rem 0;">{m.data.summary}</p>
+                    {m.data.milestone && (
+                      <p style="font-family: var(--font-mono); font-size: 0.625rem; color: var(--color-ink-muted); letter-spacing: 0.04em; margin: 0.25rem 0 0 0;">Milestone · {m.data.milestone}</p>
+                    )}
                     {m.data.tags.length > 0 && (
                       <div class="flex flex-wrap gap-2">
                         {m.data.tags.map(tag => <span class="tag">{tag}</span>)}
