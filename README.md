@@ -10,14 +10,14 @@ This is the codebase for [redarclabs.com](https://redarclabs.com), built with [A
 │   ├── logo.svg
 │   └── robots.txt
 ├── src/
-│   ├── components/
-│   │   ├── AnimatedLogo.astro
-│   │   ├── Nav.astro
-│   │   └── ThemeToggle.astro
-│   ├── pages/
-│   │   └── index.astro
-│   ├── App.css
+│   ├── components/      AnimatedLogo, Nav, ThemeToggle, Footer
+│   ├── content/         markdown collections: curriculum, workshops, talks, research-log
+│   ├── content.config.ts
+│   ├── layouts/Base.astro
+│   ├── lib/date.ts
+│   ├── pages/           index, community, curriculum/, workshops/, talks, research-log/
 │   └── index.css
+├── docs/superpowers/    design spec and implementation plan for the 2026-09 rebrand
 └── astro.config.mjs
 ```
 
