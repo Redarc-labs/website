@@ -1,23 +1,10 @@
 ---
-title: "Foundations & Onboarding"
+title: "Why did it say that?"
 week: "Week 1"
 date: 2026-06-01
-summary: "Kicked off with transformer circuits and got everyone's environments set up for activation-patching experiments."
-tags: ["onboarding", "circuits"]
-draft: false
+summary: "Hooks written by hand, a logit lens on GPT-2, and the pivot-language experiment on an Indian language pair."
+tags: ["hooks", "logit lens"]
+draft: true
 ---
 
-## Placeholder log entry — replace with the real recap
-
-A short narrative of what the community worked through this week.
-
-### What we covered
-
-- Intro to transformer circuits and the residual stream as a communication channel.
-- Read and discussed *A Mathematical Framework for Transformer Circuits*.
-- Set up local environments for activation-patching experiments.
-
-### Open threads
-
-- Which model(s) to standardise on for the cohort's shared experiments.
-- A shared notebook template so results are reproducible across members.
+*Notes from this week are posted after the session.*
