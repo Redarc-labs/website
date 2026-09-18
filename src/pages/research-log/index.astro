@@ -14,13 +14,13 @@ const entries = (await getCollection('researchLog', ({ data }) => !data.draft)).
   keywords="AI safety research log, interpretability weekly notes, research community"
 >
   <main>
-    <section class="sec">
+    <section class="sec" style="padding-top: 7rem;">
       <div class="container-site">
         <div class="grid lg:grid-cols-[220px_1fr] gap-8 lg:gap-16">
-          <div>
-            <a href="/community" class="nav-a">← Community</a>
+          <div style="padding-top: 0.125rem;">
+            <a href="/community" class="nav-a" style="font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; margin-bottom: 0.875rem;">← Community</a>
             <span class="eyebrow">Research log</span>
-            <h2 class="h2">Weekly notes</h2>
+            <h2 class="h2" style="margin: 0; line-height: 1.2;">Weekly notes</h2>
           </div>
           <div>
             <p style="font-size: 0.9375rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 58ch; margin: 0 0 2.5rem 0;">
@@ -28,7 +28,7 @@ const entries = (await getCollection('researchLog', ({ data }) => !data.draft)).
             </p>
 
             {entries.length === 0 ? (
-              <p>Notes are posted weekly while a cohort is running.</p>
+              <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-ink-muted);">Notes are posted weekly while a cohort is running.</p>
             ) : (
               <div style="display: grid; gap: 1rem;">
                 {entries.map(e => (
