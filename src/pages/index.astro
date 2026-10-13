@@ -2,13 +2,13 @@
 import Base from '../layouts/Base.astro';
 import AnimatedLogo from '../components/AnimatedLogo.astro';
 
-// Five papers at NeurIPS 2026 workshops. `href` is added when a preprint
-// exists; a card without one renders no link. `cohort: true`
-// marks papers that came out of cohort 01.
+// 2026 papers: three at NeurIPS 2026 workshops, one under review, one preprint.
+// `href` is added when a preprint exists; a card without one renders no link.
+// `cohort: true` marks papers that came out of cohort 01.
 const pubs = [
   {
     year: '2026',
-    venue: 'TAE: Can We Trust AI Evaluation? · NeurIPS 2026',
+    venue: 'New in ML · NeurIPS 2026',
     title: 'Known by Construction: Calibrating Model-State Instruments Against Models Whose State Was Installed, Hidden, or Never Present',
     authors: 'Manan Wadhwa*, Shivam Dubey*',
     finding: 'Seven instruments that claim to read a model\'s internal state were tested on models where the state was installed, hidden, or absent by construction. Every one read the prompt or the training history instead.',
@@ -26,14 +26,6 @@ const pubs = [
   {
     year: '2026',
     venue: 'Interpretability as a Science · NeurIPS 2026',
-    title: 'Distance to the Boundary Is Not Steering Resistance',
-    authors: 'Manan Wadhwa*, Shivam Dubey*',
-    finding: 'Fixed-dose steering audits rank aligned models as least controllable because the model\'s margin grew, not because the steering direction weakened.',
-    tags: ['Steering audits', 'Post-training', 'Refusal'],
-  },
-  {
-    year: '2026',
-    venue: 'Interpretability as a Science · NeurIPS 2026',
     title: 'Dead Salmons Have a False-Positive Rate: A Calibrated Null-Model Test for Interpretability',
     authors: 'Manan Wadhwa*, Shivam Dubey*',
     finding: 'Probes, concept directions, and SAE feature selection report confident findings on networks that learned nothing. The shuffled-label control everyone runs does not catch it.',
@@ -41,7 +33,15 @@ const pubs = [
   },
   {
     year: '2026',
-    venue: 'Interpretability as a Science · NeurIPS 2026',
+    venue: 'UniReps · Under review',
+    title: 'Distance to the Boundary Is Not Steering Resistance',
+    authors: 'Manan Wadhwa*, Shivam Dubey*',
+    finding: 'Fixed-dose steering audits rank aligned models as least controllable because the model\'s margin grew, not because the steering direction weakened.',
+    tags: ['Steering audits', 'Post-training', 'Refusal'],
+  },
+  {
+    year: '2026',
+    venue: 'arXiv · Preprint',
     title: 'Doubt Is a Decision: A Sparse Circuit Commits Language Models to "I Don\'t Know"',
     authors: 'Sheryl Mehta*, Shagun Chadha*, Kanika Singhal*, Manan Wadhwa, Shivam Dubey',
     finding: 'The decision to hedge lives in a small set of heads and neurons. Correlation-selected "confidence neurons" fail causal tests against a random-neuron null.',
@@ -140,7 +140,7 @@ const people = [
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/syntaxsavant/' },
     ],
     items: [
-      { label: 'Five NeurIPS 2026 workshop papers', meta: 'Co-first author' },
+      { label: 'Three NeurIPS 2026 workshop papers', meta: 'Co-first author' },
       { label: 'Toxin Feature Hierarchy in ESM-2', meta: 'ICML 2026 GenBio Workshop' },
       { label: 'Fairness-Aware Speculative Decoding (FASD)', meta: 'MIT Technology Review cited · 77% bias reduction at 6% latency overhead' },
       { label: 'Fourier Gradient Regularisation (FGR)', meta: 'NeurIPS 2025 · 2× adversarial robustness on ResNet-18' },
@@ -158,7 +158,7 @@ const people = [
       { label: 'LinkedIn', href: 'https://linkedin.com/in/manan-wadhwa' },
     ],
     items: [
-      { label: 'Five NeurIPS 2026 workshop papers', meta: 'Co-first author' },
+      { label: 'Three NeurIPS 2026 workshop papers', meta: 'Co-first author' },
       { label: 'Toxin Feature Hierarchy in ESM-2', meta: 'ICML 2026 GenBio Workshop' },
       { label: 'MARS Research Fellow', meta: 'Cambridge AI Safety Hub' },
       { label: 'Google Summer of Code 2026', meta: 'HumanAI organisation' },
@@ -280,7 +280,7 @@ const collaborators = [
             </div>
             <div>
               <p style="font-size: 0.875rem; color: var(--color-ink-sec); line-height: 1.7; max-width: 52ch; margin-bottom: 1.5rem;">
-                Five papers at NeurIPS 2026 workshops. Workshop papers are non-archival.
+                Three papers at NeurIPS 2026 workshops, one under review and one preprint. Workshop papers are non-archival.
               </p>
               {pubs.map((p, i) => (
                 <div style={`padding-block: 1.5rem; border-top: 1px solid var(--color-rule); ${i === pubs.length - 1 ? 'border-bottom: 1px solid var(--color-rule);' : ''}`}>
